@@ -1,7 +1,6 @@
-urxvt*transparent: true
-urxvt*shading: 20
+urxvt*depth: 32
+urxvt*background: rgba:1111/1111/1111/dddd
 urxvt*foreground: green
-urxvt*background: black
 urxvt*font: xft:Liberation Mono:size=10
 urxvt*scrollBar: false
 
