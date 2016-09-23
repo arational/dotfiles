@@ -194,8 +194,8 @@ for_window [title="KeePassX"] move to scratchpad
 exec --no-startup-id keepassx
 
 # Startup tmux
-bindsym $mod+minus [title="tmux"] scratchpad show
-for_window [title="tmux"] move to scratchpad
+bindsym $mod+minus [title="^tmux$"] scratchpad show
+for_window [title="^tmux$"] move to scratchpad
 exec --no-startup-id urxvt -e tmux attach-session -t ivan
 
 # Startup thunderbird
