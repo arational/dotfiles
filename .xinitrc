@@ -1,2 +1,2 @@
-sh ~/.fehbg &
-exec i3 -V >> ~/.i3log/$(date +'%F-%k-%M-%S') 2>&1
+feh  --bg-scale .fehbg/* &
+exec i3 -V >> ~/.i3log/$(date +'%F-%H-%M-%S').log 2>&1
