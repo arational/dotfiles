@@ -1,0 +1,26 @@
+#!/bin/sh
+WORKDIR=$HOME/.screenlayout
+FILEEXT=sh
+FEH=$HOME/.fehbg
+
+if [ $# -eq 0 ]
+then
+  echo "Usage: $0 <mode>"
+  echo "Possible modes are:"
+  for FILE in $(ls $WORKDIR/*.$FILEEXT)
+  do
+    basename $FILE ".$FILEEXT"
+  done
+  exit 2
+fi
+
+TARGET=$WORKDIR/$1.$FILEEXT
+
+if [ ! -e $TARGET ]
+then
+  echo "ERROR: The mode \"$1\" is not valid!" >&2
+  exit 1
+fi
+
+sh $TARGET
+sh $FEH

@@ -1,0 +1,5 @@
+if [ -z "$DISPLAY" ]; then
+    emacsclient -a "" -t "$@"
+else
+    emacsclient -a "" -c "$@"
+fi
