@@ -1,0 +1,5 @@
+#!/bin/sh
+selection=$(find * -type f ! -iname ".*" | dmenu -l 30)
+if [ -n "$selection" ]; then
+  xdg-open "$selection"
+fi
