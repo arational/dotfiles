@@ -1,0 +1,78 @@
+#!/bin/sh
+
+backup() {
+    BACKUPDIR=$HOME/mnt/nas/backup/liquid
+    TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
+    DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
+    EXCDOTFILES=".cache .thunderbird .m2"
+
+    if [ ! -d "$BACKUPDIR" ]; then
+        echo "ERROR: Backup directory \"$BACKUPDIR\" does not exist."
+        exit 1
+    fi
+
+    for ITEM in $EXCDOTFILES
+    do
+        DOTFILES=$(echo "$DOTFILES" | grep -v "$ITEM")
+    done
+
+    mkdir -p $TARGETDIR
+
+    PACMAN=$TARGETDIR/pacman
+    mkdir -p $PACMAN
+    pacman -Qqen > $PACMAN/pkglist_native
+    pacman -Qqem > $PACMAN/pkglist_foreign
+
+    cd /usr/local/
+    tar -cjf $TARGETDIR/usr-local.tar.bz2 *
+
+    cd /var/lib/pacman/local/
+    tar -cjf $PACMAN/local.tar.bz2 *
+
+    cd /etc/
+    tar -cjf $TARGETDIR/etc.tar.bz2 *
+
+    cd $HOME
+    tar -cjf $TARGETDIR/dotfiles.tar.bz2 $DOTFILES
+
+    cd $HOME/bin
+    tar -cjf $TARGETDIR/bin.tar.bz2 *
+}
+
+case "$1" in
+    failed)
+        systemctl --failed --all
+        ;;
+    errors)
+        journalctl -p 3 -xb
+        ;;
+    installed)
+        pacman -Qne
+        pacman -Qme
+        ;;
+    backup)
+        backup
+        ;;
+    upgrade)
+        backup
+        sudo pacman -Syu
+        ;;
+    sync)
+        sudo pacman -Sy
+        ;;
+    cleanup)
+        sudo pacman -Rns $(pacman -Qtdq)
+        ;;
+    *)
+        echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
+        echo "failed    - Show all failed units during boot time."
+        echo "errors    - Show system errors."
+        echo "installed - Show manually installed packages."
+        echo "backup    - Make backup of the current system."
+        echo "upgrade   - Make backup and upgrade the current system."
+        echo "sync      - Sync package database."
+        echo "cleanup   - Remove packages that maybe not needed anymore."
+        exit 2
+esac
+
+exit 0
