@@ -1,6 +1,7 @@
 [Default Applications]
 x-scheme-handler/mailto=userapp-Thunderbird-D2F4KY.desktop
 message/rfc822=userapp-Thunderbird-D2F4KY.desktop
+text/plain=emc.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-D2F4KY.desktop;
