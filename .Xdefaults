@@ -1,7 +1,7 @@
 urxvt*depth: 32
 urxvt*background: rgba:1111/1111/1111/dddd
 urxvt*foreground: green
-urxvt*font: xft:Liberation Mono:size=10
+urxvt*font: 7x14
 urxvt*scrollBar: false
 
 *color0:  #2E3436
