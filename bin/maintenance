@@ -39,6 +39,14 @@ backup() {
     tar -cjf $TARGETDIR/bin.tar.bz2 *
 }
 
+cleanup() {
+    obsolete_pkgs=$(pacman -Qtdq)
+    if [ -n "$obsolete_pkgs" ]; then
+        sudo pacman -Rns
+    fi
+    sudo pacman -Sc
+}
+
 case "$1" in
     failed)
         systemctl --failed --all
@@ -61,7 +69,7 @@ case "$1" in
         sudo pacman -Sy
         ;;
     cleanup)
-        sudo pacman -Rns $(pacman -Qtdq)
+        cleanup
         ;;
     *)
         echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
