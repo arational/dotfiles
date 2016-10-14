@@ -1,8 +1,9 @@
-urxvt*depth: 32
-urxvt*background: rgba:1111/1111/1111/dddd
-urxvt*foreground: green
-urxvt*font: 7x14
-urxvt*scrollBar: false
+xterm*background: black
+xterm*foreground: green
+xterm*font: 7x14
+xterm*scrollBar: false
+xterm*keepSelection: false
+xterm*selectToClipboard: true
 
 *color0:  #2E3436
 *color1:  #a40000
