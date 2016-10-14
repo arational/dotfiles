@@ -1,7 +1,7 @@
 #!/bin/sh
 
 backup() {
-    BACKUPDIR=$HOME/mnt/nas/backup/liquid
+    BACKUPDIR=$HOME/var/backup/liquid
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     EXCDOTFILES=".cache .thunderbird .m2"
