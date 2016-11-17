@@ -1,6 +1,7 @@
 xterm*background: black
 xterm*foreground: green
 xterm*font: 7x14
+xterm*utf8: 1
 xterm*scrollBar: false
 xterm*keepSelection: false
 xterm*selectToClipboard: true
