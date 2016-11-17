@@ -185,6 +185,10 @@ mode "$screen_layout" {
 }
 bindsym $mod+F10 mode "$screen_layout"
 
+# Set Border styles
+new_window pixel 1
+new_float pixel 1
+
 # Move the current workspace to right output
 bindsym $mod+x move workspace to output right
 
