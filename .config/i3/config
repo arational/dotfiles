@@ -195,15 +195,15 @@ bindsym $mod+x move workspace to output right
 # Start emacs
 bindsym $mod+plus exec "emc"
 
+# Startup tmux
+bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
+for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
+exec --no-startup-id i3-sensible-terminal -class tmux -e tmux attach-session -t tmux
+
 # Startup keepassx
 bindsym $mod+p [title="KeePassX"] scratchpad show
 for_window [title="KeePassX"] move to scratchpad
 exec --no-startup-id keepassx
-
-# Startup tmux
-bindsym $mod+minus [title="^tmux$"] scratchpad show
-for_window [title="^tmux$"] move to scratchpad
-exec --no-startup-id i3-sensible-terminal -e tmux attach-session -t ivan
 
 # Startup emacs org-mode task management
 bindsym $mod+t [title="^Task Management d8wo019xmmfha382$"] scratchpad show
