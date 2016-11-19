@@ -1,6 +1,6 @@
 #!/bin/sh
 nodes="bin src doc var log tmp"
-selection=$(find $nodes -type f ! -iname ".*" | dmenu -l 30)
+selection=$(find $nodes -type f ! -iname ".*" | dmenu "$@")
 if [ -n "$selection" ]; then
   xdg-open "$selection"
 fi
