@@ -1,9 +1,11 @@
 #!/bin/sh
+BACKUPDIR=$HOME/var/backup/liquid
 
 backup() {
-    BACKUPDIR=$HOME/var/backup/liquid
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
+    BINDIR=$HOME/bin
+    REPOS=$HOME/var/repos
     EXCDOTFILES=".cache .thunderbird .m2"
 
     if [ ! -d "$BACKUPDIR" ]; then
@@ -35,8 +37,11 @@ backup() {
     cd $HOME
     tar -cjf $TARGETDIR/dotfiles.tar.bz2 $DOTFILES
 
-    cd $HOME/bin
+    cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
+
+    cd $REPOS
+    tar -cjf $TARGETDIR/repos.tar.bz2 *
 }
 
 cleanup() {
@@ -45,6 +50,13 @@ cleanup() {
         sudo pacman -Rns $obsolete_pkgs
     fi
     sudo pacman -Sc
+}
+
+save_backups() {
+    REMOTEDIR=backup\\
+    TARGET=$(basename "$BACKUPDIR")
+    cd $(dirname "$BACKUPDIR")
+    smbclient //nas/Volume_1 -N -c "recurse; prompt; cd $REMOTEDIR; mput $TARGET"
 }
 
 case "$1" in
@@ -61,6 +73,9 @@ case "$1" in
     backup)
         backup
         ;;
+    save_backups)
+        save_backups
+        ;;
     upgrade)
         backup
         sudo pacman -Syu
@@ -73,13 +88,14 @@ case "$1" in
         ;;
     *)
         echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
-        echo "failed    - Show all failed units during boot time."
-        echo "errors    - Show system errors."
-        echo "installed - Show manually installed packages."
-        echo "backup    - Make backup of the current system."
-        echo "upgrade   - Make backup and upgrade the current system."
-        echo "sync      - Sync package database."
-        echo "cleanup   - Remove packages that maybe not needed anymore."
+        echo "failed       - Show all failed units during boot time."
+        echo "errors       - Show system errors."
+        echo "installed    - Show manually installed packages."
+        echo "backup       - Make backup of the current system."
+        echo "save_backups - Save all backups to remote server."
+        echo "upgrade      - Make backup and upgrade the current system."
+        echo "sync         - Sync package database."
+        echo "cleanup      - Remove packages that maybe not needed anymore."
         exit 2
 esac
 
