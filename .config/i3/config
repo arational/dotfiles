@@ -204,9 +204,9 @@ for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
 exec --no-startup-id i3-sensible-terminal -class tmux -e tmux attach-session -t tmux
 
 # Startup emacs org-mode task management
-bindsym $mod+t [title="^Task Management d8wo019xmmfha382$"] scratchpad show
-for_window [title="^Task Management d8wo019xmmfha382$"] move to scratchpad
-exec --no-startup-id emacs -T "Task Management d8wo019xmmfha382" var/todo.org
+bindsym $mod+t [title="~/var/todo.org"] scratchpad show
+for_window [title="~/var/todo.org"] move to scratchpad
+exec --no-startup-id emc ~/var/todo.org
 
 # Startup thunderbird
 exec thunderbird
