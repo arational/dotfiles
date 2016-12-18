@@ -1,16 +1,12 @@
 #!/bin/sh
 BACKUPDIR=$HOME/var/backup/liquid
+SAVEDIR=$HOME/mnt/nas/backup/
 
 backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
     EXCDOTFILES=".cache .thunderbird .m2"
-
-    if [ ! -d "$BACKUPDIR" ]; then
-        echo "ERROR: Backup directory \"$BACKUPDIR\" does not exist."
-        exit 1
-    fi
 
     for ITEM in $EXCDOTFILES
     do
@@ -49,10 +45,16 @@ cleanup() {
 }
 
 save_backups() {
-    REMOTEDIR=backup\\
-    TARGET=$(basename "$BACKUPDIR")
-    cd $(dirname "$BACKUPDIR")
-    smbclient //nas/Volume_1 -N -c "recurse; prompt; cd $REMOTEDIR; mput $TARGET"
+    if [ ! -d "$SAVEDIR" ]; then
+        echo "ERROR: directory \"$SAVEDIR\" does not exist."
+        exit 1
+    fi
+
+    echo "Saving \"$BACKUPDIR\" ..."
+    cp -r -n "$BACKUPDIR" "$SAVEDIR" || true
+
+    echo "Pushing password-store ..."
+    pass git push
 }
 
 case "$1" in
