@@ -39,8 +39,10 @@ backup() {
 cleanup() {
     obsolete_pkgs=$(pacman -Qtdq)
     if [ -n "$obsolete_pkgs" ]; then
+        echo "Removing obsolete packages ..."
         sudo pacman -Rns $obsolete_pkgs
     fi
+    echo "Deleting package cache ..."
     sudo pacman -Sc
 }
 
