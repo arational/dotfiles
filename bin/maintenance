@@ -5,7 +5,6 @@ backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
-    REPOS=$HOME/var/repos
     EXCDOTFILES=".cache .thunderbird .m2"
 
     if [ ! -d "$BACKUPDIR" ]; then
@@ -39,9 +38,6 @@ backup() {
 
     cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
-
-    cd $REPOS
-    tar -cjf $TARGETDIR/repos.tar.bz2 *
 }
 
 cleanup() {
