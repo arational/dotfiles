@@ -8,6 +8,10 @@ backup() {
     BINDIR=$HOME/bin
     EXCDOTFILES=".cache .thunderbird .m2"
 
+    if [ ! -d "$BACKUPDIR" ]; then
+        mkdir "$BACKUPDIR"
+    fi
+
     for ITEM in $EXCDOTFILES
     do
         DOTFILES=$(echo "$DOTFILES" | grep -v "$ITEM")
