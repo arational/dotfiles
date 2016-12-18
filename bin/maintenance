@@ -1,5 +1,5 @@
 #!/bin/sh
-BACKUPDIR=$HOME/var/backup/liquid
+BACKUPDIR=$HOME/var/backup/$HOSTNAME
 SAVEDIR=$HOME/mnt/nas/backup/
 
 backup() {
