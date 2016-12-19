@@ -41,6 +41,8 @@ backup() {
 }
 
 cleanup() {
+    DOWNLOADDIR=$HOME/var/downloads
+
     obsolete_pkgs=$(pacman -Qtdq)
     if [ -n "$obsolete_pkgs" ]; then
         echo "Removing obsolete packages ..."
@@ -48,6 +50,9 @@ cleanup() {
     fi
     echo "Deleting package cache ..."
     sudo pacman -Sc
+
+    echo "Deleting temporary downloads ..."
+    rm -r $DOWNLOADDIR/*
 }
 
 save_backups() {
