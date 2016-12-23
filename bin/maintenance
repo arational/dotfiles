@@ -93,6 +93,7 @@ case "$1" in
     upgrade)
         backup
         sudo pacman -Syu
+        cleanup
         ;;
     sync)
         sudo pacman -Sy
@@ -107,7 +108,7 @@ case "$1" in
         echo "installed    - Show manually installed packages."
         echo "backup       - Make backup of the current system."
         echo "save_backups - Save all backups to remote server."
-        echo "upgrade      - Make backup and upgrade the current system."
+        echo "upgrade      - Make backup, upgrade the system and do a cleanup."
         echo "sync         - Sync package database."
         echo "cleanup      - Remove packages that maybe not needed anymore."
         exit 2
