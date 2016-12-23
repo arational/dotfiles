@@ -209,6 +209,3 @@ exec --no-startup-id i3-sensible-terminal -class tmux -e tmux attach-session -t 
 bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] scratchpad show
 for_window [instance="^emacs$" title="~/var/todo.org"] move to scratchpad
 exec --no-startup-id emc ~/var/todo.org
-
-# Startup thunderbird
-exec thunderbird
