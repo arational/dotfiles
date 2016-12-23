@@ -1,0 +1,108 @@
+# ==============================================================================
+# Sections for "personal"
+
+IMAPStore personal-remote
+Host imap.1und1.de
+User ivan@stefanischin.eu
+PassCmd "pass email/ivan@stefanischin.eu"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore personal-local
+Path ~/.mail/personal/
+Inbox ~/.mail/personal/Inbox
+
+Channel personal
+Master :personal-remote:
+Slave :personal-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
+
+# ==============================================================================
+# Sections for "gmail"
+
+IMAPStore gmail-remote
+Host imap.gmail.com
+User mettajhana@gmail.com
+PassCmd "pass email/mettajhana@gmail.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns *
+Create Both
+SyncState *
+
+# ==============================================================================
+# Sections for "bevuta"
+
+IMAPStore bevuta-remote
+Host mail.networkname.de
+User ivan.stefanischin@bevuta.com
+PassCmd "pass email/ivan.stefanischin@bevuta.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore bevuta-local
+Path ~/.mail/bevuta/
+Inbox ~/.mail/bevuta/Inbox
+
+Channel bevuta
+Master :bevuta-remote:
+Slave :bevuta-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
+
+# ==============================================================================
+# Sections for "spam"
+
+IMAPStore spam-remote
+Host imap.1und1.de
+User katzomoto@online.de
+PassCmd "pass email/katzomoto@online.de"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore spam-local
+Path ~/.mail/spam/
+Inbox ~/.mail/spam/Inbox
+
+Channel spam
+Master :spam-remote:
+Slave :spam-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
+
+# ==============================================================================
+# Sections for "stefanischin"
+
+IMAPStore stefanischin-remote
+Host imap.1und1.de
+User 3013-614@online.de
+PassCmd "pass email/3013-614@online.de"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore stefanischin-local
+Path ~/.mail/stefanischin/
+Inbox ~/.mail/stefanischin/Inbox
+
+Channel stefanischin
+Master :stefanischin-remote:
+Slave :stefanischin-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
