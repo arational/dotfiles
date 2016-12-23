@@ -24,18 +24,23 @@ backup() {
     pacman -Qqen > $PACMAN/pkglist_native
     pacman -Qqem > $PACMAN/pkglist_foreign
 
+    echo "Making backup for /usr/local ..."
     cd /usr/local/
     tar -cjf $TARGETDIR/usr-local.tar.bz2 *
 
+    echo "Making backup for /var/lib/pacman/local ..."
     cd /var/lib/pacman/local/
     tar -cjf $PACMAN/local.tar.bz2 *
 
+    echo "Making backup for /etc ..."
     cd /etc/
     tar -cjf $TARGETDIR/etc.tar.bz2 *
 
+    echo "Making backup for home dotfiles ..."
     cd $HOME
     tar -cjf $TARGETDIR/dotfiles.tar.bz2 $DOTFILES
 
+    echo "Making backup for home bindir ..."
     cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
 }
