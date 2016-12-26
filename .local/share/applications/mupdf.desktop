@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=emc
+GenericName=Text Editor
+Comment=Edit text
+MimeType=application/pdf;application/x-pdf
+Exec=mupdf %F
+Type=Application
+Terminal=false
+Categories=Utility
