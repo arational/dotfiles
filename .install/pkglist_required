@@ -15,7 +15,13 @@ systemd
 tmux
 xterm
 bash
+xorg-xinit
 xorg-xrandr
+xorg-server
 mu
 isync
 msmtp
+ruby
+jdk8-openjdk
+ttf-liberation
+ttf-dejavu
