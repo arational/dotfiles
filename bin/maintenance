@@ -6,7 +6,7 @@ backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
-    EXCDOTFILES=".cache .mail .m2"
+    EXCDOTFILES=".cache .mail .m2 .minecraft"
 
     if [ ! -d "$BACKUPDIR" ]; then
         mkdir "$BACKUPDIR"
