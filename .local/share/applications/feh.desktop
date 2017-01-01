@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=feh
+GenericName=View image
+Comment=View image
+MimeType=image/jpeg;image/png;image/tiff;image/bmp;image/gif
+Exec=feh %F
+Type=Application
+Terminal=false
+Categories=Utility
