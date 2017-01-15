@@ -58,6 +58,9 @@ cleanup() {
 
     echo "Deleting temporary downloads ..."
     rm -r $DOWNLOADDIR/*
+
+    echo "Deleting temporary files ..."
+    rm -r $HOME/tmp/*
 }
 
 save_backups() {
