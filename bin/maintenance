@@ -104,6 +104,9 @@ case "$1" in
     cleanup)
         cleanup
         ;;
+    custom_pkgs)
+        expac "%n %p" | grep "Ivan Stefanischin" | column -t
+        ;;
     *)
         echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
         echo "failed       - Show all failed units during boot time."
@@ -114,6 +117,7 @@ case "$1" in
         echo "upgrade      - Make backup, upgrade the system and do a cleanup."
         echo "sync         - Sync package database."
         echo "cleanup      - Remove packages that maybe not needed anymore."
+        echo "custom_pkgs  - Show custom compiles packages."
         exit 2
 esac
 
