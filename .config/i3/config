@@ -203,7 +203,7 @@ bindsym $mod+plus exec "emc"
 # Startup tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
 for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
-exec --no-startup-id i3-sensible-terminal -class tmux -e tmux attach-session -t tmux
+exec --no-startup-id i3-sensible-terminal -class tmux -e tmux_session
 
 # Startup emacs org-mode task management
 bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] scratchpad show
