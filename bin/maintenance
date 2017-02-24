@@ -75,6 +75,10 @@ save_backups() {
     echo "Pushing password-store ..."
     pass git pull 
     pass git push
+
+    echo "Pushing dotfiles ..."
+    git pull
+    git push
 }
 
 case "$1" in
