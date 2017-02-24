@@ -1,0 +1,9 @@
+[Unit]
+Description=Watching for storage devices with udisks and automount them
+
+[Service]
+Type=simple
+ExecStart=/home/ivan/bin/udisks-watch
+
+[Install]
+WantedBy=default.target
