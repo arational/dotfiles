@@ -73,6 +73,7 @@ save_backups() {
     cp -r -n "$BACKUPDIR" "$SAVEDIR" || true
 
     echo "Pushing password-store ..."
+    pass git pull 
     pass git push
 }
 
