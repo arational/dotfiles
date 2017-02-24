@@ -10,3 +10,4 @@ wget
 ngrep
 tcpdump
 maven
+pkgfile
