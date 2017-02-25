@@ -2,6 +2,7 @@
 
 BAT=0
 RDY_PERC=75
+FULL_PERC=95
 
 DEFAULT_START=40
 DEFAULT_STOP=80
@@ -19,8 +20,12 @@ case "$1" in
     ready)
         set_thresh $BAT $DEFAULT_START $DEFAULT_STOP
         ;;
+    full)
+        set_thresh $BAT $FULL_PERC $FULL_PERC
+        ;;
     *)
         echo "Usage: $0 {prepare|ready}"
         echo "prepare - charge battery until a percentage of $RDY_PERC is reached."
         echo "ready   - set battery charge percentage threshold to $DEFAULT_START - $DEFAULT_STOP."
+        echo "full    - set battery charge percentage threshold to $FULL_PERC."
 esac

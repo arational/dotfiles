@@ -7,3 +7,7 @@ nmap
 the_silver_searcher
 tp_smapi
 wget
+ngrep
+tcpdump
+maven
+pkgfile
