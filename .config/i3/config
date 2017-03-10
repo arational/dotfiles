@@ -212,3 +212,6 @@ exec --no-startup-id i3-sensible-terminal -class tmux -e tmux_session
 bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] scratchpad show
 for_window [instance="^emacs$" title="~/var/todo.org"] move to scratchpad
 exec --no-startup-id emc ~/var/todo.org
+
+# Execute the final script with jobs that require the window manager to be ready
+exec --no-startup-id "sh ~/.config/i3/ready.sh"
