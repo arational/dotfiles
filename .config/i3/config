@@ -200,6 +200,9 @@ bindsym $mod+x move workspace to output right
 # Start emacs
 bindsym $mod+plus exec "emc"
 
+# Tabbed browsing
+for_window [class="qutebrowser"] focus child, layout tabbed, focus
+
 # Startup tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
 for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
