@@ -21,27 +21,6 @@ Remove Both
 SyncState *
 
 # ==============================================================================
-# Sections for "gmail"
-
-IMAPStore gmail-remote
-Host imap.gmail.com
-User mettajhana@gmail.com
-PassCmd "pass email/mettajhana@gmail.com"
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-MaildirStore gmail-local
-Path ~/.mail/gmail/
-Inbox ~/.mail/gmail/Inbox
-
-Channel gmail
-Master :gmail-remote:
-Slave :gmail-local:
-Patterns *
-Create Both
-SyncState *
-
-# ==============================================================================
 # Sections for "bevuta"
 
 IMAPStore bevuta-remote
