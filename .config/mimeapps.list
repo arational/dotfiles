@@ -1,6 +1,6 @@
 [Default Applications]
-x-scheme-handler/mailto=userapp-Thunderbird-D2F4KY.desktop
-message/rfc822=userapp-Thunderbird-D2F4KY.desktop
+x-scheme-handler/mailto=emc.desktop
+message/rfc822=emc.desktop
 text/plain=emc.desktop
 application/pdf=mupdf.desktop
 image/jpeg=feh.desktop
@@ -10,5 +10,5 @@ image/gif=feh.desktop
 image/bmp=feh.desktop
 
 [Added Associations]
-x-scheme-handler/mailto=userapp-Thunderbird-D2F4KY.desktop;
-message/rfc822=userapp-Thunderbird-D2F4KY.desktop;
+x-scheme-handler/mailto=emc.desktop
+message/rfc822=emc.desktop
