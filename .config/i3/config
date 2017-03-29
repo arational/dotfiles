@@ -197,11 +197,14 @@ new_float pixel 1
 # Move the current workspace to right output
 bindsym $mod+x move workspace to output right
 
-# Start emacs
+# Emacs
 bindsym $mod+plus exec "emc"
 
+# Default browser
+bindsym $mod+q exec "xdg-open about:blank"
+
 # Tabbed browsing
-for_window [class="qutebrowser"] focus child, layout tabbed, focus
+for_window [class="qutebrowser"] focus child, focus
 
 # Startup tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
