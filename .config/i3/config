@@ -211,5 +211,9 @@ for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
 bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] scratchpad show
 for_window [instance="^emacs$" title="~/var/todo.org"] move to scratchpad
 
+# emacs mu4e email client
+bindsym $mod+at [instance="^emacs$" title="\*mu4e-main\*"] scratchpad show
+for_window [instance="^emacs$" title="\*mu4e-main\*"] move to scratchpad
+
 # Execute the final script with jobs that require the window manager to be ready
 exec --no-startup-id "sh ~/.config/i3/ready.sh"
