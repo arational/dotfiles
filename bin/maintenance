@@ -21,8 +21,8 @@ backup() {
 
     PACMAN=$TARGETDIR/pacman
     mkdir -p $PACMAN
-    pacman -Qqen > $PACMAN/pkglist_native
-    pacman -Qqem > $PACMAN/pkglist_foreign
+    pacaur -Qqen > $PACMAN/pkglist_native
+    pacaur -Qqem > $PACMAN/pkglist_foreign
 
     echo "Making backup for /usr/local ..."
     cd /usr/local/
@@ -48,13 +48,13 @@ backup() {
 cleanup() {
     DOWNLOADDIR=$HOME/var/downloads
 
-    obsolete_pkgs=$(pacman -Qtdq)
+    obsolete_pkgs=$(pacaur -Qtdq)
     if [ -n "$obsolete_pkgs" ]; then
         echo "Removing obsolete packages ..."
-        sudo pacman -Rns $obsolete_pkgs
+        pacaur -Rns $obsolete_pkgs
     fi
     echo "Deleting package cache ..."
-    sudo pacman -Sc
+    pacaur -Sc
 
     echo "Deleting temporary downloads ..."
     rm -r $DOWNLOADDIR/*
@@ -89,8 +89,8 @@ case "$1" in
         journalctl -p 3 -xb
         ;;
     installed)
-        pacman -Qne
-        pacman -Qme
+        pacaur -Qne
+        pacaur -Qme
         ;;
     backup)
         backup
@@ -99,12 +99,12 @@ case "$1" in
         save_backups
         ;;
     upgrade)
-        backup
-        sudo pacman -Syu
+        #backup
+        pacaur -Syu
         cleanup
         ;;
     sync)
-        sudo pacman -Sy
+        pacaur -Sy
         ;;
     cleanup)
         cleanup
