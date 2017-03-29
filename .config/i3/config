@@ -200,11 +200,9 @@ bindsym $mod+x move workspace to output right
 # Emacs
 bindsym $mod+plus exec "emc"
 
-# Default browser
-bindsym $mod+q exec "xdg-open about:blank"
+# qutebrowser
+bindsym $mod+q exec qutebrowser
 
-# Tabbed browsing
-for_window [class="qutebrowser"] focus child, focus
 
 # Startup tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
