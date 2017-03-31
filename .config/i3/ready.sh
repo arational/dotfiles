@@ -13,6 +13,3 @@ systemctl --user start window-manager.target
 
 # Start the tmux client
 i3-sensible-terminal -class tmux -e tmux_session &
-
-# Start task manager in emacs
-emc ~/var/todo.org &
