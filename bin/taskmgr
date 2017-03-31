@@ -1,0 +1,2 @@
+#!/bin/sh
+emc "~/var/todo.org"
