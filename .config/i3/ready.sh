@@ -4,6 +4,9 @@
 # completely until now
 sleep 5
 
+# Make modification environment variables visible for systemd user services
+systemctl --user import-environment
+
 # Activate the window-manager systemd-target to run services which
 # dependent on a window manager
 systemctl --user start window-manager.target
