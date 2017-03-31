@@ -129,6 +129,13 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# lock the screen when the lock fn key is pressed
+bindcode 160 exec --no-startup-id i3exit lock, mode "default"
+# lock the screen when the sleep fn key is pressed
+bindcode 150 exec --no-startup-id i3exit lock, mode "default"
+# lock the screen when the suspend fn key is pressed
+bindcode 213 exec --no-startup-id i3exit lock, mode "default"
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -176,6 +183,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Pause mode "$mode_system"
+bindcode 156 mode "$mode_system"
 
 # Control for screenlayout quick settings
 set $screen_layout Switch screen layout to (d) default, (h) home, (o) office
