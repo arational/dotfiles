@@ -5,6 +5,10 @@ xterm*utf8: 1
 xterm*scrollBar: false
 xterm*keepSelection: false
 xterm*selectToClipboard: true
+xterm*metaSendsEscape: true
+xterm*eightBitInput: false
+xterm*saveLines: 102400
+xterm*borderWidth: 0
 
 *color0:  #2E3436
 *color1:  #a40000
