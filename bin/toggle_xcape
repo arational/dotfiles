@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -z $(pgrep '^xcape$') ]
+  then xcape
+  else pkill '^xcape$'
+fi

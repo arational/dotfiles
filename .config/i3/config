@@ -208,8 +208,11 @@ bindsym $mod+x move workspace to output right
 # Composition Manager
 bindsym $mod+F11 exec toggle_xcompmgr
 
+# xcape (Turns single Control presses into escape)
+bindsym $mod+F12 exec toggle_xcape
+
 # Emacs
-bindsym $mod+plus exec "emc"
+bindsym $mod+plus exec emc
 
 # qutebrowser
 bindsym $mod+q exec qutebrowser

@@ -1,9 +1,0 @@
-[Unit]
-Description=xcape daemon
-
-[Service]
-Type=forking
-ExecStart=/usr/bin/xcape
-
-[Install]
-WantedBy=window-manager.target
