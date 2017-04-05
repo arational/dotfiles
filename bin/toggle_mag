@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ -z $(pgrep xzoom) ]
+if [ -z $(pgrep '^xzoom$') ]
   then xzoom -mag 3 -geometry 500x500 &
-  else pkill xzoom
+  else pkill '^xzoom$'
 fi
