@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Transparency
-[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" 0.75 >/dev/null
 
 # Java
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=gasp -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
