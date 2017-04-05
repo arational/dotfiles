@@ -205,6 +205,9 @@ new_float pixel 1
 # Move the current workspace to right output
 bindsym $mod+x move workspace to output right
 
+# Composition Manager
+bindsym $mod+F11 exec toggle_xcompmgr
+
 # Emacs
 bindsym $mod+plus exec "emc"
 

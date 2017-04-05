@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -z $(pgrep '^xcompmgr$') ]
+  then xcompmgr -c &
+  else pkill '^xcompmgr$'
+fi
