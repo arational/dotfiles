@@ -3,7 +3,6 @@ dmenu
 emacs
 feh
 git
-git-lfs-bin
 gnupg
 gtk2
 i3-wm
@@ -32,3 +31,4 @@ qt5-webengine
 alsa-utils
 xbindkeys
 rlwrap
+dunst
