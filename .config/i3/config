@@ -232,7 +232,7 @@ bindsym $mod+space exec toggle_mag
 bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] focus
 
 # emacs mu4e email client
-bindsym $mod+i [instance="^emacs$" title="\*mu4e-main\*"] focus
+bindsym $mod+i [instance="^emacs$" title="\*mu4e-[^\*]+\*"] focus
 
 # Execute the final script with jobs that require the window manager to be ready
 exec --no-startup-id "sh ~/.config/i3/ready.sh"
