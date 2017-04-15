@@ -1,0 +1,13 @@
+#!/bin/sh
+source="$HOME/.screenlayout"
+profiles=$(ls $source)
+choice=
+for item in $profiles
+do
+  choice="${item%.*}\n$choice"
+done
+selection=$(echo -e "$choice" | dmenu)
+if [ -n "$selection" ]
+then
+    sh "$source/$selection.sh"
+fi

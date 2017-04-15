@@ -189,17 +189,7 @@ bindsym $mod+Pause mode "$mode_system"
 bindcode 156 mode "$mode_system"
 
 # Control for screenlayout quick settings
-set $screen_layout Switch screen layout to (d) default, (h) home, (o) office
-mode "$screen_layout" {
-    bindsym d exec --no-startup-id screenlayout default, mode "default"
-    bindsym h exec --no-startup-id screenlayout home, mode "default"
-    bindsym o exec --no-startup-id screenlayout office, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+F10 mode "$screen_layout"
+bindsym $mod+F10 exec dmenu-screenlayout
 
 # Set Border styles
 new_window pixel 1
