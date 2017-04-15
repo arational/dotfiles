@@ -6,7 +6,7 @@ backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
-    DOTFILEBLACKLIST="$(cat .config/maintenance/dotfiles_blacklist)"
+    DOTFILEBLACKLIST="$(cat .config/maintenance/dotfile_blacklist)"
 
     if [ ! -d "$BACKUPDIR" ]; then
         mkdir "$BACKUPDIR"
