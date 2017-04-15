@@ -6,13 +6,13 @@ backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
-    EXCDOTFILES=".cache .mail .m2"
+    DOTFILEBLACKLIST="$(cat .config/maintenance/dotfiles_blacklist)"
 
     if [ ! -d "$BACKUPDIR" ]; then
         mkdir "$BACKUPDIR"
     fi
 
-    for ITEM in $EXCDOTFILES
+    for ITEM in $DOTFILEBLACKLIST
     do
         DOTFILES=$(echo "$DOTFILES" | grep -v "$ITEM")
     done
