@@ -101,7 +101,6 @@ case "$1" in
     upgrade)
         backup
         pacaur -Syu
-        cleanup
         ;;
     sync)
         pacaur -Sy
