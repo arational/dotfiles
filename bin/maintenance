@@ -57,10 +57,10 @@ cleanup() {
     pacaur -Sc
 
     echo "Deleting temporary downloads ..."
-    rm -r $DOWNLOADDIR/*
+    rm -r $DOWNLOADDIR/* &> /dev/null
 
     echo "Deleting temporary files ..."
-    rm -r $HOME/tmp/*
+    rm -r $HOME/tmp/* &> /dev/null
 }
 
 save_backups() {
