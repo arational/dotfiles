@@ -99,7 +99,7 @@ case "$1" in
         save_backups
         ;;
     upgrade)
-        #backup
+        backup
         pacaur -Syu
         cleanup
         ;;
