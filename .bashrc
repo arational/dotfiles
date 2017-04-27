@@ -16,4 +16,4 @@ export JAVA_OPTIONS="-Dsun.java2d.opengl=true"
 alias ls='ls --color=auto'
 
 # Prompt
-PS1='\[\033[1;33m\]\t $(if [[ $? == 0 ]]; then echo "\[\033[1;32m\]:-)";else echo "\[\033[1;31m\]:-("; fi)\[\033[0m\] \$ '
+PS1='$(if [[ $? == 0 ]]; then echo "\[\033[1;32m\]:-)";else echo "\[\033[1;31m\]:-("; fi)\[\033[0m\] \$ '
