@@ -99,7 +99,6 @@ case "$1" in
         save_backups
         ;;
     upgrade)
-        backup
         pacaur -Syu
         ;;
     sync)
