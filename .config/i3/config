@@ -208,7 +208,7 @@ bindsym $mod+F12 exec toggle_xcape
 bindsym $mod+plus exec emc
 
 # qutebrowser
-bindsym $mod+q exec qutebrowser
+bindsym $mod+q exec "qutebrowser --backend webengine"
 
 # tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
