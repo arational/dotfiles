@@ -70,7 +70,7 @@ save_backups() {
     fi
 
     echo "Saving \"$BACKUPDIR\" ..."
-    cp -r -n "$BACKUPDIR" "$SAVEDIR" || true
+    cp -r -n "$BACKUPDIR" "$SAVEDIR" && rm -r "$BACKUPDIR/*"
 
     echo "Pushing password-store ..."
     pass git pull 
