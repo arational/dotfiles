@@ -34,7 +34,8 @@ backup() {
 
     echo "Making backup for /etc ..."
     cd /etc/
-    tar -cjf $TARGETDIR/etc.tar.bz2 *
+    sudo tar -cjf $TARGETDIR/etc.tar.bz2 * && \
+    sudo chown $USER:users $TARGETDIR/etc.tar.bz2
 
     echo "Making backup for home dotfiles ..."
     cd $HOME
