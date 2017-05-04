@@ -8,9 +8,7 @@ backup() {
     BINDIR=$HOME/bin
     DOTFILEBLACKLIST="$(cat .config/maintenance/dotfile_blacklist)"
 
-    if [ ! -d "$BACKUPDIR" ]; then
-        mkdir "$BACKUPDIR"
-    fi
+    mkdir -p "$BACKUPDIR"
 
     for ITEM in $DOTFILEBLACKLIST
     do
