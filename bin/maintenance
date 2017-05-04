@@ -43,6 +43,8 @@ backup() {
     echo "Making backup for home bindir ..."
     cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
+
+    echo "Done!"
 }
 
 cleanup() {
@@ -61,6 +63,8 @@ cleanup() {
 
     echo "Deleting temporary files ..."
     rm -r $HOME/tmp/* &> /dev/null
+
+    echo "Done!"
 }
 
 save_backups() {
@@ -85,6 +89,8 @@ save_backups() {
     echo "Pushing dotfiles ..."
     git pull
     git push
+
+    echo "Done!"
 }
 
 case "$1" in
