@@ -83,7 +83,7 @@ save_backups() {
     cp -n "$ACKAGECACHE/*" "$TARGETDIR"
 
     echo "Pushing password-store ..."
-    pass git pull 
+    pass git pull
     pass git push
 
     echo "Pushing dotfiles ..."
