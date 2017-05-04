@@ -1,6 +1,7 @@
 #!/bin/sh
 BACKUPDIR=$HOME/var/backup/$HOSTNAME
 SAVEDIR=$HOME/mnt/nas/backup/
+PACKAGECACHE=/var/cache/pacman/pkg
 
 backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
@@ -71,6 +72,11 @@ save_backups() {
     echo "Saving \"$BACKUPDIR\" ..."
     cp -r -n "$BACKUPDIR" "$SAVEDIR" && \
     rm -r "$BACKUPDIR/*"
+
+    echo "Saving package cache ..."
+    TARGETDIR="$SAVEDIR/pacman_cache/"
+    mkdir -p "$TARGETDIR"
+    cp -n "$ACKAGECACHE/*" "$TARGETDIR"
 
     echo "Pushing password-store ..."
     pass git pull 
