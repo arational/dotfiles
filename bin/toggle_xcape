@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ -z $(pgrep '^xcape$') ]
-then 
-    xcape && notify-send "xcape enabled"
+then
+    xcape -t 1000 -e "Control_L=Escape;Control_R=Return" && notify-send "xcape enabled"
 else
     pkill '^xcape$' && notify-send "xcape disabled"
 fi
