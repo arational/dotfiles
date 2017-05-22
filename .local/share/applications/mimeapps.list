@@ -1,6 +1,7 @@
 
 [Default Applications]
 text/html=qutebrowser.desktop
+text/xml=qutebrowser.desktop
 x-scheme-handler/http=qutebrowser.desktop
 x-scheme-handler/https=qutebrowser.desktop
 x-scheme-handler/about=qutebrowser.desktop
