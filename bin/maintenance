@@ -3,6 +3,17 @@ BACKUPDIR=$HOME/var/backup/$HOSTNAME
 SAVEDIR=$HOME/mnt/nas/backup/
 PACKAGECACHE=/var/cache/pacman/pkg
 
+confirm () {
+    while true
+    do
+        read -p "Continue (y/n)? " answer
+        case "$answer" in
+            y|Y) return 0;;
+            n|N) return 1;;
+        esac
+    done
+}
+
 backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
@@ -55,14 +66,18 @@ cleanup() {
         echo "Removing obsolete packages ..."
         pacaur -Rns $obsolete_pkgs
     fi
+
+    echo "Deleting temporary backups ..."
+    confirm && rm -r "$BACKUPDIR/*"
+
     echo "Deleting package cache ..."
     pacaur -Sc
 
     echo "Deleting temporary downloads ..."
-    rm -r $DOWNLOADDIR/* &> /dev/null
+    confirm && rm -r $DOWNLOADDIR/* &> /dev/null
 
     echo "Deleting temporary files ..."
-    rm -r $HOME/tmp/* &> /dev/null
+    confirm && rm -r $HOME/tmp/* &> /dev/null
 
     echo "Done!"
 }
@@ -74,13 +89,10 @@ save_backups() {
     fi
 
     echo "Saving \"$BACKUPDIR\" ..."
-    cp -r -n "$BACKUPDIR" "$SAVEDIR" && \
-    rm -r "$BACKUPDIR/*"
+    cp -r -n "$BACKUPDIR" "$SAVEDIR"
 
     echo "Saving package cache ..."
-    TARGETDIR="$SAVEDIR/pacman_cache/"
-    mkdir -p "$TARGETDIR"
-    cp -n "$ACKAGECACHE/*" "$TARGETDIR"
+    cp -r -n "$PACKAGECACHE" "$SAVEDIR/"
 
     echo "Pushing password-store ..."
     pass git pull
@@ -93,7 +105,7 @@ save_backups() {
     echo "Done!"
 }
 
-case "$1" in
+case $1 in
     failed)
         systemctl --failed --all
         ;;
@@ -135,5 +147,3 @@ case "$1" in
         echo "custom_pkgs  - Show manually compiled packages."
         exit 2
 esac
-
-exit 0
