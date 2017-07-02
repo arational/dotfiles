@@ -99,6 +99,7 @@ save_backups() {
     pass git push
 
     echo "Pushing dotfiles ..."
+    cd $HOME
     git pull
     git push
 
