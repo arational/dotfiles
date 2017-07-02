@@ -1,16 +1,26 @@
 #!/bin/sh
 BACKUPDIR=$HOME/var/backup/$HOSTNAME
 SAVEDIR=$HOME/mnt/nas/backup/
+PACKAGECACHE=/var/cache/pacman/pkg
+
+confirm () {
+    while true
+    do
+        read -p "Continue (y/n)? " answer
+        case "$answer" in
+            y|Y) return 0;;
+            n|N) return 1;;
+        esac
+    done
+}
 
 backup() {
     TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
-    DOTFILEBLACKLIST="$(cat .config/maintenance/dotfile_blacklist)"
+    DOTFILEBLACKLIST="$(cat $HOME/.config/maintenance/dotfile_blacklist)"
 
-    if [ ! -d "$BACKUPDIR" ]; then
-        mkdir "$BACKUPDIR"
-    fi
+    mkdir -p "$BACKUPDIR"
 
     for ITEM in $DOTFILEBLACKLIST
     do
@@ -34,7 +44,8 @@ backup() {
 
     echo "Making backup for /etc ..."
     cd /etc/
-    tar -cjf $TARGETDIR/etc.tar.bz2 *
+    sudo tar -cjf $TARGETDIR/etc.tar.bz2 * && \
+    sudo chown $USER:users $TARGETDIR/etc.tar.bz2
 
     echo "Making backup for home dotfiles ..."
     cd $HOME
@@ -43,6 +54,8 @@ backup() {
     echo "Making backup for home bindir ..."
     cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
+
+    echo "Done!"
 }
 
 cleanup() {
@@ -53,14 +66,20 @@ cleanup() {
         echo "Removing obsolete packages ..."
         pacaur -Rns $obsolete_pkgs
     fi
+
+    echo "Deleting temporary backups ..."
+    confirm && rm -r "$BACKUPDIR/*"
+
     echo "Deleting package cache ..."
     pacaur -Sc
 
     echo "Deleting temporary downloads ..."
-    rm -r $DOWNLOADDIR/* &> /dev/null
+    confirm && rm -r $DOWNLOADDIR/* &> /dev/null
 
     echo "Deleting temporary files ..."
-    rm -r $HOME/tmp/* &> /dev/null
+    confirm && rm -r $HOME/tmp/* &> /dev/null
+
+    echo "Done!"
 }
 
 save_backups() {
@@ -70,18 +89,24 @@ save_backups() {
     fi
 
     echo "Saving \"$BACKUPDIR\" ..."
-    cp -r -n "$BACKUPDIR" "$SAVEDIR" || true
+    cp -r -n "$BACKUPDIR" "$SAVEDIR"
+
+    echo "Saving package cache ..."
+    cp -r -n "$PACKAGECACHE" "$SAVEDIR/"
 
     echo "Pushing password-store ..."
-    pass git pull 
+    pass git pull
     pass git push
 
     echo "Pushing dotfiles ..."
+    cd $HOME
     git pull
     git push
+
+    echo "Done!"
 }
 
-case "$1" in
+case $1 in
     failed)
         systemctl --failed --all
         ;;
@@ -99,7 +124,6 @@ case "$1" in
         save_backups
         ;;
     upgrade)
-        backup
         pacaur -Syu
         ;;
     sync)
@@ -124,5 +148,3 @@ case "$1" in
         echo "custom_pkgs  - Show manually compiled packages."
         exit 2
 esac
-
-exit 0

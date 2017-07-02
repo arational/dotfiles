@@ -1,0 +1,5 @@
+[user]
+	name = Ivan Stefanischin
+	email = ivan@stefanischin.eu
+[includeIf "gitdir:~/src/bevuta/"]
+	path = ~/.config/git/bevuta

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=tmux
+GenericName=Tmux Terminal
+Exec=i3-sensible-terminal -class tmux -e tmux_session
+Icon=shell
+Type=Application
+Terminal=false
+Categories=Utility
+StartupWMClass=Emacs
+Keywords=Command;Shell
