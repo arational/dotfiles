@@ -144,7 +144,8 @@ case $1 in
         echo "save_backups - Save all backups to remote server."
         echo "upgrade      - Make backup, upgrade the system and do a cleanup."
         echo "sync         - Sync package database."
-        echo "cleanup      - Remove packages that maybe not needed anymore."
+        echo "cleanup      - Does some cleanup work and asks for confirmation"
+        echo "               before every step."
         echo "custom_pkgs  - Show manually compiled packages."
         exit 2
 esac
