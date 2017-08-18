@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-export PATH=$PATH:$HOME/bin:$HOME/src/chicken/bin
+export PATH=$PATH:$HOME/bin
 export VISUAL='emc'
 export EDITOR='emc'
 export BROWSER='qutebrowser'
