@@ -25,6 +25,7 @@ jdk8-openjdk
 ttf-liberation
 ttf-dejavu
 qutebrowser-git
-qt5-webengine
+gst-libav
+gst-plugins-good
 alsa-utils
 xbindkeys
