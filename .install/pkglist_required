@@ -24,7 +24,6 @@ ruby
 jdk8-openjdk
 ttf-liberation
 ttf-dejavu
-udisks2
 qutebrowser-git
 qt5-webengine
 alsa-utils
