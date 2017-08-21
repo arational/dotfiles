@@ -1,6 +1,6 @@
 #!/bin/sh
-BACKUPDIR=$HOME/var/backup/$HOSTNAME
-SAVEDIR=$HOME/mnt/nas/backup/
+BACKUPDIR=$HOME/var/backup/$HOSTNAME/fast
+SAVEDIR=$HOME/mnt/nas/backup/$HOSTNAME
 PACKAGECACHE=/var/cache/pacman/pkg
 
 confirm () {
@@ -68,7 +68,7 @@ cleanup() {
     fi
 
     echo "Deleting temporary backups ..."
-    confirm && rm -r "$BACKUPDIR/*"
+    confirm && rm -r $BACKUPDIR/*
 
     echo "Deleting package cache ..."
     pacaur -Sc
