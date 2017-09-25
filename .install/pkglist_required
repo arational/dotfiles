@@ -29,3 +29,4 @@ gst-libav
 gst-plugins-good
 alsa-utils
 xbindkeys
+tomb
