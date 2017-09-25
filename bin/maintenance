@@ -34,26 +34,31 @@ backup() {
     pacaur -Qqen > $PACMAN/pkglist_native
     pacaur -Qqem > $PACMAN/pkglist_foreign
 
-    echo "Making backup for /usr/local ..."
+    echo "Making backup of /usr/local ..."
     cd /usr/local/
     tar -cjf $TARGETDIR/usr-local.tar.bz2 *
 
-    echo "Making backup for /var/lib/pacman/local ..."
+    echo "Making backup of /var/lib/pacman/local ..."
     cd /var/lib/pacman/local/
     tar -cjf $PACMAN/local.tar.bz2 *
 
-    echo "Making backup for /etc ..."
+    echo "Making backup of /etc ..."
     cd /etc/
     sudo tar -cjf $TARGETDIR/etc.tar.bz2 * && \
     sudo chown $USER:users $TARGETDIR/etc.tar.bz2
 
-    echo "Making backup for home dotfiles ..."
+    echo "Making backup of home dotfiles ..."
     cd $HOME
     tar -cjf $TARGETDIR/dotfiles.tar.bz2 $DOTFILES
 
-    echo "Making backup for home bindir ..."
+    echo "Making backup of home bindir ..."
     cd $BINDIR
     tar -cjf $TARGETDIR/bin.tar.bz2 *
+
+    echo "Making backup of gpg keyring and trustdb ..."
+    cd $HOME/.gnupg/
+    cp pubring.kbx $TARGETDIR/
+    gpg --export-ownertrust > $TARGETDIR/ownertrust.txt
 
     echo "Done!"
 }
