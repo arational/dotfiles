@@ -5,21 +5,27 @@ lock() {
 
 case "$1" in
    lock)
+       sudo tomb close
        lock
        ;;
    logout)
+       sudo tomb close
        i3-msg exit
        ;;
    suspend)
+       sudo tomb close
        lock && systemctl suspend
        ;;
    hibernate)
+       sudo tomb close
        lock && systemctl hibernate
        ;;
    reboot)
+       sudo tomb close
        systemctl reboot
        ;;
    shutdown)
+       sudo tomb close
        systemctl poweroff
        ;;
    *)

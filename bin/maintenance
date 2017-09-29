@@ -100,7 +100,7 @@ save_backups() {
     cp -r -n "$PACKAGECACHE" "$SAVEDIR/"
 
     echo "Pushing password-store ..."
-    sudo tomb open -g -f $HOME/.password.tomb -k $HOME/.password.tomb.key $HOME/.password-store/
+    open-pass-tomb
     pass git pull
     pass git push
     sudo tomb close
