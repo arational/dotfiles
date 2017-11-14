@@ -6,12 +6,15 @@ general {
 }
 
 order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+order += "cpu_temperature 2"
+order += "cpu_temperature 3"
 order += "cpu_usage"
 order += "disk /"
 order += "battery 0"
-order += "wireless wlp2s0"
-order += "ethernet enp0s25"
-order += "run_watch DHCP"
+order += "battery 1"
+order += "wireless wlp4s0"
+order += "ethernet enp0s31f6"
 order += "run_watch VPNC"
 order += "tztime berlin"
 
@@ -20,34 +23,56 @@ cpu_temperature 0 {
      path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
+cpu_temperature 1 {
+     format = "%degrees °C"
+     path = "/sys/class/thermal/thermal_zone1/temp"
+}
+
+cpu_temperature 2 {
+     format = "%degrees °C"
+     path = "/sys/class/thermal/thermal_zone2/temp"
+}
+
+cpu_temperature 3 {
+     format = "%degrees °C"
+     path = "/sys/class/thermal/thermal_zone3/temp"
+}
+
 disk "/" {
      format = "%free"
 }
 
 battery 0 {
-     format = "%status %percentage %remaining %emptytime"
+     format = "BAT0: %status %percentage %remaining %emptytime"
      format_down = "No battery"
      status_chr = "⚡ CHR"
      status_bat = "🔋 BAT"
      status_unk = "? UNK"
      status_full = "☻ FULL"
      path = "/sys/class/power_supply/BAT%d/uevent"
-     low_threshold = 10
+     low_threshold = 40
 }
 
-wireless wlp2s0 {
+battery 1 {
+     format = "BAT1: %status %percentage %remaining %emptytime"
+     format_down = "No battery"
+     status_chr = "⚡ CHR"
+     status_bat = "🔋 BAT"
+     status_unk = "? UNK"
+     status_full = "☻ FULL"
+     path = "/sys/class/power_supply/BAT%d/uevent"
+     low_threshold = 40
+}
+
+wireless wlp4s0 {
      format_up = "W: (%quality at %essid, %bitrate) %ip"
      format_down = "W: down"
 }
 
-ethernet enp0s25 {
+ethernet enp0s31f6 {
      # if you use %speed, i3status requires the cap_net_admin capability
      format_up = "E: %ip (%speed)"
      format_down = "E: down"
-}
-
-run_watch DHCP {
-     pidfile = "/var/run/dhclient*.pid"
 }
 
 run_watch VPNC {
