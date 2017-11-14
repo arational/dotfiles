@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/.gem/ruby/2.4.0/bin
 export VISUAL='emc'
 export EDITOR='emc'
 export BROWSER='qutebrowser'
