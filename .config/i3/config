@@ -185,7 +185,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Delete mode "$mode_system"
 bindcode 156 mode "$mode_system"
 
 # Control for screenlayout quick settings
@@ -205,7 +205,7 @@ bindsym $mod+F11 exec toggle_xcompmgr
 bindsym $mod+F12 exec toggle_xcape
 
 # Emacs
-bindsym $mod+plus exec emc
+bindsym $mod+equal exec emc
 
 # qutebrowser
 bindsym $mod+q exec qutebrowser
