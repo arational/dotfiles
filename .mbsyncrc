@@ -11,6 +11,7 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 MaildirStore personal-local
 Path ~/.mail/personal/
 Inbox ~/.mail/personal/Inbox
+SubFolders Legacy
 
 Channel personal
 Master :personal-remote:
@@ -33,6 +34,7 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 MaildirStore bevuta-local
 Path ~/.mail/bevuta/
 Inbox ~/.mail/bevuta/Inbox
+SubFolders Legacy
 
 Channel bevuta
 Master :bevuta-remote:
