@@ -1,0 +1,3 @@
+#!/bin/sh
+ls $HOME/.password-store/ 2> /dev/null || \
+    sudo tomb open -g -f $HOME/.password.tomb -k $HOME/.password.tomb.key $HOME/.password-store/
