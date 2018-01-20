@@ -136,6 +136,9 @@ bindcode 150 exec --no-startup-id i3exit lock, mode "default"
 # lock the screen when the suspend fn key is pressed
 bindcode 213 exec --no-startup-id i3exit lock, mode "default"
 
+# Toggle transparency of the tmux window
+bindsym $mod+Shift+minus exec toggle_transparency_tmux
+
 # Colors
 client.focused #00ff00 #000000 #ffffff #00ff00 #00ff00
 
