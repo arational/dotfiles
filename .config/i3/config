@@ -136,6 +136,10 @@ bindcode 150 exec --no-startup-id i3exit lock, mode "default"
 # lock the screen when the suspend fn key is pressed
 bindcode 213 exec --no-startup-id i3exit lock, mode "default"
 
+bindcode 179 exec --no-startup-id pavucontrol-qt
+
+bindcode 152 exec emc-explore
+
 # Toggle transparency of the tmux window
 bindsym $mod+Shift+minus exec toggle_transparency_tmux
 
@@ -188,27 +192,29 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Delete mode "$mode_system"
+bindsym $mod+Escape mode "$mode_system"
 bindcode 156 mode "$mode_system"
-
-# Control for screenlayout quick settings
-bindsym $mod+F10 exec dmenu-screenlayout
 
 # Set Border styles
 new_window pixel 1
 new_float pixel 1
 
-# Move the current workspace to right output
-bindsym $mod+x move workspace to output right
+# Move the current workspace to output above
+bindsym $mod+x move workspace to output up
+
+# Some quickstart keys
+bindsym $mod+F1 exec emailclient
+bindsym $mod+F2 exec taskmgr
+
+# Control the monitor
+bindsym $mod+F9 exec monitor.sh off
+bindsym $mod+F10 exec monitor.sh above
 
 # Composition Manager
 bindsym $mod+F11 exec toggle_xcompmgr
 
 # xcape (Turns single Control presses into escape)
 bindsym $mod+F12 exec toggle_xcape
-
-# Emacs
-bindsym $mod+equal exec emc
 
 # qutebrowser
 bindsym $mod+q exec qutebrowser
