@@ -66,15 +66,15 @@
 #  Control + b:2 + Release
 
 # Increase volume
-"amixer set Master playback 2+"
+"amixer sset Master playback 2%+"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"amixer set Master playback 2-"
+"amixer sset Master playback 2%-"
    XF86AudioLowerVolume
 
 # Toggle Mute
-"amixer set Master playback toggle"
+"amixer sset Master playback toggle"
    XF86AudioMute
 
 ##################################
