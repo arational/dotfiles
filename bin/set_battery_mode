@@ -1,31 +1,28 @@
 #!/bin/sh
 
-BAT=0
-RDY_PERC=75
-FULL_PERC=95
+FULL_START=90
+FULL_STOP=95
 
-DEFAULT_START=40
+DEFAULT_START=75
 DEFAULT_STOP=80
 
 # set the battery charging thresholds to extend battery lifespan
 set_thresh() {
-    echo $2 | sudo tee /sys/devices/platform/smapi/BAT$1/start_charge_thresh > /dev/null
-    echo $3 | sudo tee /sys/devices/platform/smapi/BAT$1/stop_charge_thresh > /dev/null
+    sudo tpacpi-bat -s ST $1 $2
+    sudo tpacpi-bat -s SP $1 $3
 }
 
 case "$1" in
-    prepare)
-        set_thresh $BAT $RDY_PERC $DEFAULT_STOP
-        ;;
-    ready)
-        set_thresh $BAT $DEFAULT_START $DEFAULT_STOP
+    default)
+        set_thresh 1 $DEFAULT_START $DEFAULT_STOP
+        set_thresh 2 $DEFAULT_START $DEFAULT_STOP
         ;;
     full)
-        set_thresh $BAT $FULL_PERC $FULL_PERC
+        set_thresh 1 $FULL_START $FULL_STOP
+        set_thresh 2 $FULL_START $FULL_STOP
         ;;
     *)
-        echo "Usage: $0 {prepare|ready}"
-        echo "prepare - charge battery until a percentage of $RDY_PERC is reached."
-        echo "ready   - set battery charge percentage threshold to $DEFAULT_START - $DEFAULT_STOP."
-        echo "full    - set battery charge percentage threshold to $FULL_PERC."
+        echo "Usage: $0 {default|full}"
+        echo "default - charge battery until a percentage of $DEFAULT_START is reached."
+        echo "full    - charge battery until a percentage of $FULL_START is reached."
 esac
