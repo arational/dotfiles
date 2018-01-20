@@ -1,23 +1,9 @@
 #!/bin/sh
 if [ -z $(pgrep '^xcape$') ]
 then
-    # Do some remappings
-    xmodmap -e "remove Control = Control_R"
-    xmodmap -e "keycode 105 = Return"
-    xmodmap -e "keycode 36 = Control_R"
-    xmodmap -e "add Control = Control_R"
-    xmodmap -e "keycode 108 = Alt_R"
-
     # prepare xcape
     xcape -t 1000 -e "Control_L=Escape;Control_R=Return" && notify-send "xcape enabled"
 else
-    # Map to original state
-    xmodmap -e "remove Control = Control_R"
-    xmodmap -e "keycode 36 = Return"
-    xmodmap -e "keycode 105 = Control_R"
-    xmodmap -e "add Control = Control_R"
-    xmodmap -e "keycode 108 = ISO_Level3_Shift"
-
     # kill xcape
     pkill '^xcape$' && notify-send "xcape disabled"
 fi

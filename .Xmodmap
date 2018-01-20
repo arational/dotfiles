@@ -1,0 +1,5 @@
+remove Control = Control_R
+keycode 105 = Return
+keycode 36 = Control_R
+add Control = Control_R
+keycode 108 = Alt_R
