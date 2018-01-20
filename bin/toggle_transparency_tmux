@@ -1,0 +1,2 @@
+#!/bin/sh
+transset-df --id `xwininfo -tree -root|grep tmux|awk '{print $1;}'` --toggle 0.5
