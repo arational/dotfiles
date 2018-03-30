@@ -1,7 +1,9 @@
 #!/bin/sh
-BACKUPDIR=$HOME/var/backup/$HOSTNAME/fast
-SAVEDIR=$HOME/mnt/nas/backup/$HOSTNAME
+BACKUPDIR=$HOME/var/backup/$HOSTNAME
+REPOS=$HOME/repos
 PACKAGECACHE=/var/cache/pacman/pkg
+BACKUPSHARE=//nas/Volume_1
+BACKUPSHAREDIR=backup/$HOSTNAME
 
 confirm () {
     while true
@@ -14,13 +16,24 @@ confirm () {
     done
 }
 
+smbput() {
+    cd "$1" && \
+        smbclient -N "$2" <<EOF
+recurse
+prompt
+cd "$3"
+mput *
+quit
+EOF
+}
+
 backup() {
-    TARGETDIR=$BACKUPDIR/$(date +%Y%m%d)
+    TARGETDIR=$BACKUPDIR/fast/$(date +%Y%m%d)
     DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
     DOTFILEBLACKLIST="$(cat $HOME/.config/maintenance/dotfile_blacklist)"
 
-    mkdir -p "$BACKUPDIR"
+    mkdir -p "$BACKUPDIR/fast"
 
     for ITEM in $DOTFILEBLACKLIST
     do
@@ -73,42 +86,55 @@ cleanup() {
     fi
 
     echo "Deleting temporary backups ..."
-    confirm && rm -r $BACKUPDIR/*
+    confirm && rm -r $BACKUPDIR/fast/* && $BACKUPDIR/long/*
 
     echo "Deleting package cache ..."
     pacaur -Sc
 
     echo "Deleting temporary downloads ..."
-    confirm && rm -r $DOWNLOADDIR/* &> /dev/null
+    confirm && rm -rf $DOWNLOADDIR/* &> /dev/null
 
     echo "Deleting temporary files ..."
-    confirm && rm -r $HOME/tmp/* &> /dev/null
+    confirm && rm -rf $HOME/tmp/* &> /dev/null
 
     echo "Done!"
 }
 
 save_backups() {
-    if [ ! -d "$SAVEDIR" ]; then
-        echo "ERROR: directory \"$SAVEDIR\" does not exist."
-        exit 1
-    fi
+    echo "Saving \"$BACKUPDIR/fast\" ..."
+    confirm && smbput "$BACKUPDIR/fast" "$BACKUPSHARE" "$BACKUPSHAREDIR/fast"
 
-    echo "Saving \"$BACKUPDIR\" ..."
-    cp -r -n "$BACKUPDIR" "$SAVEDIR"
+    echo "Saving \"$BACKUPDIR/long\" ..."
+    confirm && smbput "$BACKUPDIR/long" "$BACKUPSHARE" "$BACKUPSHAREDIR/long"
 
     echo "Saving package cache ..."
-    cp -r -n "$PACKAGECACHE" "$SAVEDIR/"
+    confirm && smbput "$PACKAGECACHE" "$BACKUPSHARE" "$BACKUPSHAREDIR/pkg"
 
     echo "Pushing password-store ..."
-    open-pass-tomb
-    pass git pull
-    pass git push
-    sudo tomb close
+    confirm && {
+        open-pass-tomb
+        pass git pull
+        pass git push
+        sudo tomb close
+    }
 
     echo "Pushing dotfiles ..."
-    cd $HOME
-    git pull
-    git push
+    confirm && {
+        cd "$HOME"
+        git pull
+        git push
+    }
+
+    echo "Saving repos ..."
+    confirm && {
+        cd "$REPOS"
+        tar cSf /tmp/repos.tar *
+        smbclient -N "$BACKUPSHARE" <<EOF
+cd "$BACKUPSHAREDIR"
+put /tmp/repos.tar repos.tar
+EOF
+        rm /tmp/repos.tar
+    }
 
     echo "Done!"
 }
