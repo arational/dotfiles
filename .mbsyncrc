@@ -45,28 +45,6 @@ Remove Both
 SyncState *
 
 # ==============================================================================
-# Sections for "spam"
-
-IMAPStore spam-remote
-Host imap.1und1.de
-User katzomoto@online.de
-PassCmd "pass email/katzomoto@online.de"
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-MaildirStore spam-local
-Path ~/.mail/spam/
-Inbox ~/.mail/spam/Inbox
-
-Channel spam
-Master :spam-remote:
-Slave :spam-local:
-Patterns *
-Create Both
-Remove Both
-SyncState *
-
-# ==============================================================================
 # Sections for "stefanischin"
 
 IMAPStore stefanischin-remote
