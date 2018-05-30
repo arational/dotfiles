@@ -5,7 +5,6 @@ lock() {
 
 case "$1" in
    lock)
-       sudo tomb close
        lock
        ;;
    logout)
