@@ -29,7 +29,7 @@ EOF
 
 backup() {
     TARGETDIR=$BACKUPDIR/fast/$(date +%Y%m%d)
-    DOTFILES=$(ls -a | grep -E "^\.[^\.]+")
+    DOTFILES=$(ls -a $HOME | grep -E "^\.[^\.]+")
     BINDIR=$HOME/bin
     DOTFILEBLACKLIST="$(cat $HOME/.config/maintenance/dotfile_blacklist)"
 
