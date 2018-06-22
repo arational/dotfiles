@@ -34,6 +34,7 @@ settings:
         <: tab-move -
         <Alt+v>: scroll-page 0 -1
         <Alt+w>: fake-key <Ctrl+c>
+        <Ctrl+p>: enter-mode passthrough
         <Ctrl+v>: scroll-page 0 1
         '>': tab-move +
         q: set-cmd-text :spawn mpv {url}
