@@ -206,6 +206,7 @@ bindsym $mod+x move workspace to output up
 # Some quickstart keys
 bindsym $mod+F1 exec emailclient
 bindsym $mod+F2 exec taskmgr
+bindsym $mod+equal exec emc
 
 # Control the monitor
 bindsym $mod+F9 exec monitor.sh off
