@@ -140,7 +140,6 @@ bindcode 179 exec --no-startup-id pavucontrol-qt
 bindcode 233 exec --no-startup-id xbacklight +10
 bindcode 232 exec --no-startup-id xbacklight -10
 
-bindcode 152 exec emc-explore
 
 # Toggle transparency of the tmux window
 bindsym $mod+Shift+minus exec toggle_transparency_tmux
