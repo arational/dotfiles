@@ -168,6 +168,9 @@ case $1 in
     custom_pkgs)
         expac "%n %p" | grep "Ivan Stefanischin" | column -t
         ;;
+    updates)
+        cower -u
+        ;;
     *)
         echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
         echo "failed       - Show all failed units during boot time."
@@ -180,5 +183,6 @@ case $1 in
         echo "cleanup      - Does some cleanup work and asks for confirmation"
         echo "               before every step."
         echo "custom_pkgs  - Show manually compiled packages."
+        echo "updates      - Check foreign packages for updates in the AUR."
         exit 2
 esac
