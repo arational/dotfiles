@@ -1,6 +1,15 @@
 #!/bin/sh
-nodes=$(ls $HOME)
-selection=$(find $nodes -type f ! -iname ".*" | dmenu "$@")
+nodes=
+while read -r node
+do
+    if [ -h "$node" ]
+    then
+        node="$node/"
+    fi
+    nodes="$nodes"$'\n'$(find "$node" -type f ! -iname ".*")
+done <<< "$(ls -1 $HOME)"
+selection=$(echo "$nodes" | dmenu "$@")
+cd $HOME
 if [ -n "$selection" ]
 then
     xdg-open "$selection"
