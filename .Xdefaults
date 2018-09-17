@@ -1,6 +1,6 @@
 xterm*background: black
 xterm*foreground: green
-xterm*faceName: Liberation Mono:size=11
+xterm*faceName: Menlo:size=12
 xterm*font: 7x14
 xterm*utf8: 1
 xterm*scrollBar: false
