@@ -137,6 +137,8 @@ bindcode 150 exec --no-startup-id i3exit lock, mode "default"
 bindcode 213 exec --no-startup-id i3exit lock, mode "default"
 
 bindcode 179 exec --no-startup-id pavucontrol-qt
+bindcode 233 exec --no-startup-id xbacklight +10
+bindcode 232 exec --no-startup-id xbacklight -10
 
 bindcode 152 exec emc-explore
 
