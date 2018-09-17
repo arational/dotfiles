@@ -44,8 +44,8 @@ backup() {
 
     PACMAN=$TARGETDIR/pacman
     mkdir -p $PACMAN
-    pacman -Qqen > $PACMAN/pkglist_native
-    pacman -Qqem > $PACMAN/pkglist_foreign
+    sudo pacman -Qqen > $PACMAN/pkglist_native
+    sudo pacman -Qqem > $PACMAN/pkglist_foreign
 
     echo "Making backup of /usr/local ..."
     cd /usr/local/
@@ -82,14 +82,14 @@ cleanup() {
     obsolete_pkgs=$(pacman -Qtdq)
     if [ -n "$obsolete_pkgs" ]; then
         echo "Removing obsolete packages ..."
-        pacman -Rns $obsolete_pkgs
+        sudo pacman -Rns $obsolete_pkgs
     fi
 
     echo "Deleting temporary backups ..."
     confirm && rm -r $BACKUPDIR/fast/* && $BACKUPDIR/long/*
 
     echo "Deleting package cache ..."
-    pacman -Sc
+    sudo pacman -Sc
 
     echo "Deleting temporary downloads ..."
     confirm && rm -rf $DOWNLOADDIR/* &> /dev/null
@@ -157,10 +157,10 @@ case $1 in
         save_backups
         ;;
     upgrade)
-        pacman -Syu
+        sudo pacman -Syu
         ;;
     sync)
-        pacman -Sy
+        sudo pacman -Sy
         ;;
     cleanup)
         cleanup
