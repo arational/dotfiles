@@ -1,2 +1,2 @@
 #!/bin/sh
-emc -e "(helm-bookmarks)"
+emc -e "(command-execute 'bookmark-jump)"
