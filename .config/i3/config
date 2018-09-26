@@ -212,9 +212,6 @@ bindsym $mod+equal exec emc
 bindsym $mod+F9 exec monitor.sh off
 bindsym $mod+F10 exec monitor.sh above
 
-# Composition Manager
-bindsym $mod+F11 exec toggle_xcompmgr
-
 # xcape (Turns single Control presses into escape)
 bindsym $mod+F12 exec toggle_xcape
 
