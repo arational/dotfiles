@@ -8,25 +8,20 @@ case "$1" in
        lock
        ;;
    logout)
-       sudo tomb close
        i3-msg exit
        ;;
    suspend)
-       sudo tomb close
        lock && systemctl suspend
        ;;
    hibernate)
-       sudo tomb close
        # Used monitor connected to dock causes computer not to boot properly after hibernation
        monitor.sh off
        lock && systemctl hibernate
        ;;
    reboot)
-       sudo tomb close
        systemctl reboot
        ;;
    shutdown)
-       sudo tomb close
        systemctl poweroff
        ;;
    *)

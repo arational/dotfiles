@@ -1,3 +1,0 @@
-#!/bin/sh
-open-pass-tomb
-passmenu -l 20

@@ -44,7 +44,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+o exec --no-startup-id dmenu-open -l 30
 
 # Script for quick password access
-bindsym $mod+p exec --no-startup-id dmenu-pass
+bindsym $mod+p exec --no-startup-id passmenu -l 20
 
 # change focus
 bindsym $mod+h focus left
