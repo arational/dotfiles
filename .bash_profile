@@ -8,6 +8,7 @@ export EDITOR='emc'
 export BROWSER='qutebrowser'
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export MAGICK_OCL_DEVICE=OFF
+export SUDO_ASKPASS=$HOME/bin/askpass
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

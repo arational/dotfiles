@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+echo "getpin" | pinentry | grep "^D " | tail -c +3
