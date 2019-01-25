@@ -12,6 +12,10 @@ export SUDO_ASKPASS=$HOME/bin/askpass
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+
+# gpg-agent
+gpg-connect-agent /bye
+
 if [[ $(fgconsole 2>/dev/null) == 1 ]]
 then
   exec xinit -- :0 vt$XDG_VTNR -ardelay 200 -arinterval 40

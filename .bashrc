@@ -9,6 +9,10 @@
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=gasp -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export JAVA_OPTIONS="-Dsun.java2d.opengl=true"
 
+# gpg-agent
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # command Aliases
 alias ls='ls --color=auto'
 
