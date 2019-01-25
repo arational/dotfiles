@@ -230,3 +230,5 @@ bindsym $mod+i [instance="^emacs$" title="\*mu4e-[^\*]+\*"] focus
 
 # Execute the final script with jobs that require the window manager to be ready
 exec --no-startup-id "sh ~/.config/i3/ready.sh"
+# udiskie dmenu helper
+bindsym $mod+m exec dmenu-udiskie

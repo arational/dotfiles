@@ -12,6 +12,10 @@ export SUDO_ASKPASS=$HOME/bin/askpass
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+if [ -z $(pgrep -u $USER '^udiskie$') ]
+then
+    udiskie &
+fi
 
 # gpg-agent
 gpg-connect-agent /bye
