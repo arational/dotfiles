@@ -8,6 +8,8 @@ settings:
       q: quit
       w: session-save
       wq: quit --save
+  auto_save.session:
+    global: true
   backend:
     global: webengine
   bindings.commands:
@@ -38,10 +40,9 @@ settings:
         <Ctrl+v>: scroll-page 0 1
         '>': tab-move +
         q: set-cmd-text :spawn mpv {url}
+      prompt: {}
   content.default_encoding:
     global: utf-8
-  content.developer_extras:
-    global: true
   content.headers.accept_language:
     global: en-US,en,de
   content.notifications:
@@ -85,7 +86,11 @@ settings:
   fonts.web.size.default:
     global: 16
   fonts.web.size.default_fixed:
-    global: 13
+    global: 14
+  fonts.web.size.minimum:
+    global: 14
+  fonts.web.size.minimum_logical:
+    global: 6
   qt.args:
     global:
     - autoplay-policy=user-gesture-required
@@ -95,8 +100,10 @@ settings:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
       a: http://www.amazon.de/gp/search?ie=UTF8&keywords={}&index=blended&linkCode=ur2&camp=1638&creative=6742
-      d: https://www.youtube.com/results?search_query={}&search=Search
+      d: https://www.dict.cc/?s={}
       g: https://www.google.com/search?name=f&hl=en&q={}
       maps: https://maps.google.de/maps?q={}
+      r: https://projects.bevuta.com/issues/{}
       wd: https://de.wikipedia.org/w/index.php?title=Spezial:Suche&search={}
       we: https://en.wikipedia.org/wiki/Special:Search?go=Go&search={}
+      y: https://www.youtube.com/results?search_query={}&search=Search
