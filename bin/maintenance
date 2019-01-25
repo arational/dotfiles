@@ -172,7 +172,9 @@ case $1 in
         cower -u
         ;;
     *)
-        echo "Usage: $0 {failed|errors|installed|foreign|cleanup}"
+        echo "Usage: $0 [ACTION]"
+        echo
+        echo "Choose from one of the following actions:"
         echo "failed       - Show all failed units during boot time."
         echo "errors       - Show system errors."
         echo "installed    - Show manually installed packages."
