@@ -55,5 +55,9 @@ fi
 # Show the background image
 feh --bg-fill --xinerama-index 0 .fehbg/* &
 
+toggle_xcape
+open-pass-tomb
+i3-sensible-terminal -class tmux -e tmux_session &
+
 # Start the window manager
 exec i3 -V >> ~/.i3.log 2>&1
