@@ -8,6 +8,7 @@ image/png=feh.desktop
 image/tiff=feh.desktop
 image/gif=feh.desktop
 image/bmp=feh.desktop
+x-scheme-handler/sgnl=signal-desktop.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=emc.desktop
