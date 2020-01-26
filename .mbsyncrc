@@ -23,26 +23,27 @@ SyncState *
 
 # ==============================================================================
 # Sections for "bevuta"
+# TODO: currently out of business
 
-IMAPStore bevuta-remote
-Host mail.networkname.de
-User ivan.stefanischin@bevuta.com
-PassCmd "pass email/ivan.stefanischin@bevuta.com"
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+# IMAPStore bevuta-remote
+# Host mail.networkname.de
+# User ivan.stefanischin@bevuta.com
+# PassCmd "pass email/ivan.stefanischin@bevuta.com"
+# SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore bevuta-local
-Path ~/.mail/bevuta/
-Inbox ~/.mail/bevuta/Inbox
-SubFolders Legacy
+# MaildirStore bevuta-local
+# Path ~/.mail/bevuta/
+# Inbox ~/.mail/bevuta/Inbox
+# SubFolders Legacy
 
-Channel bevuta
-Master :bevuta-remote:
-Slave :bevuta-local:
-Patterns *
-Create Both
-Remove Both
-SyncState *
+# Channel bevuta
+# Master :bevuta-remote:
+# Slave :bevuta-local:
+# Patterns *
+# Create Both
+# Remove Both
+# SyncState *
 
 # ==============================================================================
 # Sections for "stefanischin"
