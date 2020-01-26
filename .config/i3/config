@@ -230,3 +230,6 @@ bindsym $mod+i [instance="^emacs$" title="\*mu4e-[^\*]+\*"] focus
 
 # udiskie dmenu helper
 bindsym $mod+m exec dmenu-udiskie
+
+# autostart applications
+exec emailclient
