@@ -112,10 +112,8 @@ save_backups() {
 
     echo "Pushing password-store ..."
     confirm && {
-        open-pass-tomb
         pass git pull
         pass git push
-        sudo tomb close
     }
 
     echo "Pushing dotfiles ..."
