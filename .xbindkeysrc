@@ -39,7 +39,7 @@
 
 # Examples of commands:
 
-#"xbindkeys_show" 
+#"xbindkeys_show"
 #  control+shift + q
 #
 # set directly keycode (here control + f with my keyboard)
@@ -73,9 +73,13 @@
 "amixer sset Master playback 2%-"
    XF86AudioLowerVolume
 
-# Toggle Mute
+# Toggle playback mute
 "amixer sset Master playback toggle"
    XF86AudioMute
+
+# Toggle mic mute
+"amixer sset Capture toggle"
+   XF86AudioMicMute
 
 ##################################
 # End of xbindkeys configuration #
