@@ -1,0 +1,2 @@
+#!/bin/env sh
+youtube-dl --extract-audio --audio-format mp3 "$(xclip -o)"
