@@ -231,5 +231,14 @@ bindsym $mod+i [instance="^emacs$" title="\*mu4e-[^\*]+\*"] focus
 # udiskie dmenu helper
 bindsym $mod+m exec dmenu-udiskie
 
+# mpc client shortcuts
+bindsym $mod+Ctrl+space exec mpc toggle
+bindsym $mod+Ctrl+p exec mpc prev
+bindsym $mod+Ctrl+n exec mpc next
+bindsym $mod+Ctrl+k exec mpc stop
+bindsym $mod+Ctrl+q exec mpc clear
+bindsym $mod+Ctrl+o exec dmenu-mpc-song
+bindsym $mod+Ctrl+f exec dmenu-mpc-folder
+
 # autostart applications
 exec emailclient
