@@ -1,5 +1,5 @@
-xterm*background: black
-xterm*foreground: green
+xterm*background: #181A26
+xterm*foreground: #FFFCBE
 xterm*faceName: Menlo:size=12
 xterm*font: 7x14
 xterm*utf8: 1
