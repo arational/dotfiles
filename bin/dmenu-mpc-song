@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+set -e -o pipefail
+
+IFS=$'\r\n' files=($(mpc listall))
+IFS=$'\r\n' songs=($(mpc -f '%artist% - %album% - %title%' listall))
+dmenu_entries=
+for i in "${!files[@]}"
+do
+    if [ $i -gt 0 ]
+    then
+        dmenu_entries+="\n"
+    fi
+    dmenu_entries+=$(printf "%05d - %s" $i ${songs[$i]})
+done
+choice=$(echo -e $dmenu_entries | dmenu -i -l 10)
+# force decimal representation with 10#
+mpc add "$(echo ${files[$((10#$(expr substr $choice 1 5)))]})"

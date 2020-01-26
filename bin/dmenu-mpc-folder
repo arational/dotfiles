@@ -1,0 +1,6 @@
+#!/bin/env bash
+
+set -e -o pipefail
+
+folder="$(mpc ls | dmenu -l 10 -i)"
+mpc add "$folder"
