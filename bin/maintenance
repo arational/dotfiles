@@ -89,7 +89,7 @@ cleanup() {
     confirm && rm -r $BACKUPDIR/fast/* && $BACKUPDIR/long/*
 
     echo "Deleting package cache ..."
-    sudo pacman -Sc
+    sudo pacman -Scc
 
     echo "Deleting temporary downloads ..."
     confirm && rm -rf $DOWNLOADDIR/* &> /dev/null
