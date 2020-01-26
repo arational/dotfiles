@@ -53,7 +53,7 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 
 # Show the background image
-feh --bg-fill --xinerama-index 0 .fehbg/* &
+sh .fehbg
 
 toggle_xcape
 open-pass-tomb
