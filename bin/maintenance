@@ -137,6 +137,12 @@ EOF
     echo "Done!"
 }
 
+download() {
+    echo "Downloading outdated AUR packages for build ..."
+    target=$HOME/src
+    auracle -C "$target" update
+}
+
 case $1 in
     failed)
         systemctl --failed --all
@@ -167,7 +173,10 @@ case $1 in
         expac "%n %p" | grep "Ivan Stefanischin" | column -t
         ;;
     updates)
-        cower -u
+        auracle outdated
+        ;;
+    download)
+        download
         ;;
     *)
         echo "Usage: $0 [ACTION]"
@@ -184,5 +193,6 @@ case $1 in
         echo "               before every step."
         echo "custom_pkgs  - Show manually compiled packages."
         echo "updates      - Check foreign packages for updates in the AUR."
+        echo "download     - Download outdated AUR packages for manual build."
         exit 2
 esac
