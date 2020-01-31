@@ -66,19 +66,19 @@
 #  Control + b:2 + Release
 
 # Increase volume
-"amixer sset Master playback 2%+"
+"amixer sset Master playback 2%+ && amixer-notify.sh Master"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"amixer sset Master playback 2%-"
+"amixer sset Master playback 2%- && amixer-notify.sh Master"
    XF86AudioLowerVolume
 
 # Toggle playback mute
-"amixer sset Master playback toggle"
+"amixer sset Master playback toggle && amixer-notify.sh Master"
    XF86AudioMute
 
 # Toggle mic mute
-"amixer sset Capture toggle"
+"amixer sset Capture toggle && amixer-notify.sh Capture"
    XF86AudioMicMute
 
 ##################################
