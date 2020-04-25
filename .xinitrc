@@ -53,8 +53,6 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 
 # Show the background image
-sh .fehbg
-
 toggle_xcape
 conky -d
 
@@ -62,4 +60,6 @@ open-pass-tomb
 i3-sensible-terminal -class tmux -e tmux_session &
 
 # Start the window manager
+sleep 2
+sh .fehbg
 exec i3 -V >> ~/.i3.log 2>&1
