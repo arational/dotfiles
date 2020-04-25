@@ -56,6 +56,8 @@ fi
 sh .fehbg
 
 toggle_xcape
+conky -d
+
 open-pass-tomb
 i3-sensible-terminal -class tmux -e tmux_session &
 

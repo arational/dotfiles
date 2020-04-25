@@ -218,6 +218,10 @@ bindsym $mod+q exec qutebrowser
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
 for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
 
+# conky
+bindsym $mod+space [class="^conky$" instance="^conky$"] scratchpad show
+for_window [class="^conky$" instance="^conky$"] move to scratchpad
+
 # xzoom
 for_window [title="^xzoom x\d+$"] floating toggle
 bindsym $mod+space exec toggle_mag
