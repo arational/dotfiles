@@ -233,7 +233,7 @@ bindsym $mod+t [instance="^emacs$" title="~/var/todo.org"] focus
 bindsym $mod+i [instance="^emacs$" title="\*mu4e-[^\*]+\*"] focus
 
 # udiskie dmenu helper
-bindsym $mod+m exec dmenu-udiskie
+bindsym $mod+m exec udiskie-dmenu
 
 # mpc client shortcuts
 bindsym $mod+Ctrl+space exec mpc toggle
