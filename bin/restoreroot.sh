@@ -1,5 +1,12 @@
 #!/bin/env bash
 
+######################################################################
+# This script restores the whole root partition from the backup made
+# by `backuproot.sh`.
+#
+# Please make the mandatory changes of the environment variables.
+######################################################################
+
 set -e -o pipefail -o xtrace
 
 source=/home/ivan/var/backup/liquid/long/20191214

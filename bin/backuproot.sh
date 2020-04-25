@@ -1,5 +1,11 @@
 #!/bin/env bash
 
+######################################################################
+# This script performs a live backup of the whole root partition.
+#
+# Please make the mandatory changes of the environment variables.
+######################################################################
+
 set -e -o pipefail
 
 modsize=1G
@@ -10,7 +16,6 @@ root=/dev/system/root
 snapshot=snap01
 #source=/dev/loop1
 
-
 confirm() {
     while true
     do
@@ -19,22 +24,6 @@ confirm() {
             y|Y) return 0;;
             n|N) return 1;;
         esac
-    done
-}
-
-new_password() {
-    while true
-    do
-        read -s -p "Encryption passphrase > " pass
-        echo
-        read -s -p "Retype passphrase > " pass_confirm
-        echo
-        if [ "$pass" = "$pass_confirm" ]
-        then
-            return 0
-        else
-            echo "Phrases don't match!"
-        fi
     done
 }
 
