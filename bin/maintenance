@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/env sh
+
+set -e -o pipefail
+
 BACKUPDIR=$HOME/var/backup/$HOSTNAME
 REPOS=$HOME/repos
 PACKAGECACHE=/var/cache/pacman/pkg
@@ -57,7 +60,7 @@ backup() {
 
     echo "Making backup of /etc ..."
     cd /etc/
-    sudo tar -cjf $TARGETDIR/etc.tar.bz2 * && \
+    sudo tar -cjf $TARGETDIR/etc.tar.bz2 *
     sudo chown $USER:users $TARGETDIR/etc.tar.bz2
 
     echo "Making backup of home dotfiles ..."
