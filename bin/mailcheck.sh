@@ -1,3 +1,4 @@
 #!/bin/sh
 open-pass-tomb
-mbsync -a -q
+notify-send 'Mailbox Synchronization manually triggered ...'
+systemctl --user start mbsync.service
