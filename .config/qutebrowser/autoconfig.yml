@@ -53,6 +53,8 @@ settings:
     global: en-US,en,de
   content.notifications:
     global: true
+  content.pdfjs:
+    global: true
   content.webgl:
     global: false
   downloads.location.directory:
