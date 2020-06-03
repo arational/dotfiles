@@ -2,7 +2,9 @@
 if [ -z $(pgrep '^xcape$') ]
 then
     # prepare xcape
-    xcape -t 1000 -e "Control_L=Escape;Control_R=Return" && notify-send "xcape enabled"
+    xcape -t 1000 -e "Control_R=Return" && notify-send "xcape enabled"
+    # Use this config to enable also escape on left control:
+    # `Control_L=Escape;Control_R=Return`
 else
     # kill xcape
     pkill '^xcape$' && notify-send "xcape disabled"
