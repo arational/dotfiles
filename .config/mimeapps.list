@@ -2,7 +2,7 @@
 x-scheme-handler/mailto=emc.desktop
 message/rfc822=emc.desktop
 text/plain=emc.desktop
-application/pdf=mupdf.desktop
+application/pdf=qutebrowser.desktop
 image/jpeg=feh.desktop
 image/png=feh.desktop
 image/tiff=feh.desktop
