@@ -5,7 +5,8 @@ lock() {
 
 case "$1" in
    lock)
-       electricsheep && lock
+       electricsheep
+       lock
        ;;
    logout)
        tmux kill-session -t tmux
