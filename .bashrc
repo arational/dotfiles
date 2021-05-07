@@ -18,3 +18,5 @@ alias ls='ls --color=auto'
 
 # Prompt
 PS1='$(if [[ $? == 0 ]]; then echo "\[\033[1;32m\]:-)";else echo "\[\033[1;31m\]:-("; fi)\[\033[0m\] \$ '
+
+eval "$(direnv hook bash)"
