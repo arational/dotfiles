@@ -43,6 +43,9 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # Script for quick opening of files
 bindsym $mod+o exec --no-startup-id dmenu-open -l 30
 
+# Script for screenlayout
+bindsym $mod+backslash exec --no-startup-id dmenu-screenlayout
+
 # Script for quick password access
 bindsym $mod+p exec --no-startup-id passmenu -l 20
 
