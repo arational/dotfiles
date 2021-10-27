@@ -234,6 +234,10 @@ for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
 bindsym $mod+space [class="^conky$" instance="^conky$"] scratchpad show
 for_window [class="^conky$" instance="^conky$"] move to scratchpad
 
+# org notes
+bindsym $mod+n [instance="^emacs$" title="~/var/notes.org"] scratchpad show
+for_window [instance="^emacs$" title="~/var/notes.org"] move to scratchpad
+
 # xzoom
 for_window [title="^xzoom x\d+$"] floating toggle
 bindcode 225 exec --no-startup-id toggle_mag
@@ -258,3 +262,4 @@ bindsym $mod+Ctrl+f exec dmenu-mpc-folder
 
 # autostart applications
 exec emailclient
+exec emc "~/var/notes.org"
