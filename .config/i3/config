@@ -212,7 +212,16 @@ bindsym $mod+F10 exec monitor.sh above
 bindsym $mod+F12 exec toggle_xcape
 
 # qutebrowser
-bindsym $mod+q exec qutebrowser
+set $mode_qutebrowser Qutebrowser (b) bevuta, (p) private
+mode "$mode_qutebrowser" {
+    bindsym b exec --no-startup-id qutebrowser -B ~/.qutebrowser/bevuta, mode "default"
+    bindsym p exec --no-startup-id qutebrowser -B ~/.qutebrowser/private, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+q mode "$mode_qutebrowser"
 
 # tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
