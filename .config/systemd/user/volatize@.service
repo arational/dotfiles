@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync desired directory to tmpfs
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/bin/volatize.sh start %i
+ExecStop=%h/bin/volatize.sh stop %i

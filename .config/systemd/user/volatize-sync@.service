@@ -1,0 +1,6 @@
+[Unit]
+Description=
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/volatize.sh start %i

@@ -1,0 +1,11 @@
+[Unit]
+Description=
+Requires=volatize@%i.service
+
+[Timer]
+OnBootSec=1h
+OnUnitActiveSec=1h
+Unit=volatize-sync@%i.service
+
+[Install]
+WantedBy=timers.target
