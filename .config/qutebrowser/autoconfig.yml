@@ -42,6 +42,8 @@ settings:
         <Ctrl+p>: enter-mode passthrough
         <Ctrl+v>: scroll-page 0 1
         '>': tab-move +
+        O: set-cmd-text -s :open -t -r
+        Pp: open -t -r -- {clipboard}
         q: set-cmd-text :spawn mpv {url}
         zl: spawn --userscript qute-pass
         zpl: spawn --userscript qute-pass --password-only
@@ -49,9 +51,11 @@ settings:
       prompt: {}
   content.default_encoding:
     global: utf-8
+  content.geolocation:
+    global: true
   content.headers.accept_language:
     global: en-US,en,de
-  content.notifications:
+  content.notifications.enabled:
     global: true
   content.pdfjs:
     global: true
@@ -88,7 +92,9 @@ settings:
     global: 10pt sans-serif
   fonts.statusbar:
     global: 10pt default_family
-  fonts.tabs:
+  fonts.tabs.selected:
+    global: 10pt default_family
+  fonts.tabs.unselected:
     global: 10pt default_family
   fonts.web.size.default:
     global: 16
