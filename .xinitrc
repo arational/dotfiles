@@ -55,6 +55,9 @@ fi
 # set battery mode to default
 set_battery_mode default
 
+# turn off screensaver
+setx s off
+
 # Show the background image
 toggle_xcape
 conky -d
