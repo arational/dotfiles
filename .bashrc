@@ -14,7 +14,7 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 # command Aliases
-alias ls='ls --color=auto'
+alias ll='ls -alF --color=auto'
 
 # Prompt
 PS1='$(if [[ $? == 0 ]]; then echo "\[\033[1;32m\]:-)";else echo "\[\033[1;31m\]:-("; fi)\[\033[0m\] \$ '
