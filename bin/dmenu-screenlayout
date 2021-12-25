@@ -11,3 +11,4 @@ if [ -n "$selection" ]
 then
     sh "$source/$selection.sh"
 fi
+$HOME/.fehbg
