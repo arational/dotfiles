@@ -52,6 +52,9 @@ fi
 [ -f /etc/xprofile ] && source /etc/xprofile
 [ -f ~/.xprofile ] && source ~/.xprofile
 
+# set battery mode to default
+set_battery_mode default
+
 # Show the background image
 toggle_xcape
 conky -d
