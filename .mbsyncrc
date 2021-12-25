@@ -22,28 +22,73 @@ Remove Both
 SyncState *
 
 # ==============================================================================
+# Sections for "nc"
+
+IMAPStore nc-remote
+Host imap.strato.de
+User ivan@nature-community.de
+PassCmd "pass email/ivan@nature-community.de"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore nc-local
+Path ~/.mail/nc/
+Inbox ~/.mail/nc/Inbox
+SubFolders Legacy
+
+Channel nc
+Master :nc-remote:
+Slave :nc-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
+
+# ==============================================================================
+# Sections for "nextcloud"
+
+IMAPStore nextcloud-remote
+Host imap.strato.de
+User nextcloud@nature-community.de
+PassCmd "pass email/nextcloud@nature-community.de"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore nextcloud-local
+Path ~/.mail/nextcloud/
+Inbox ~/.mail/nextcloud/Inbox
+SubFolders Legacy
+
+Channel nextcloud
+Master :nextcloud-remote:
+Slave :nextcloud-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
+
+# ==============================================================================
 # Sections for "bevuta"
-# TODO: currently out of business
 
-# IMAPStore bevuta-remote
-# Host mail.networkname.de
-# User ivan.stefanischin@bevuta.com
-# PassCmd "pass email/ivan.stefanischin@bevuta.com"
-# SSLType IMAPS
-# CertificateFile /etc/ssl/certs/ca-certificates.crt
+IMAPStore bevuta-remote
+Host mail.networkname.de
+User ivan.stefanischin@bevuta.com
+PassCmd "pass email/ivan.stefanischin@bevuta.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-# MaildirStore bevuta-local
-# Path ~/.mail/bevuta/
-# Inbox ~/.mail/bevuta/Inbox
-# SubFolders Legacy
+MaildirStore bevuta-local
+Path ~/.mail/bevuta/
+Inbox ~/.mail/bevuta/Inbox
+SubFolders Legacy
 
-# Channel bevuta
-# Master :bevuta-remote:
-# Slave :bevuta-local:
-# Patterns *
-# Create Both
-# Remove Both
-# SyncState *
+Channel bevuta
+Master :bevuta-remote:
+Slave :bevuta-local:
+Patterns *
+Create Both
+Remove Both
+SyncState *
 
 # ==============================================================================
 # Sections for "stefanischin"
