@@ -3,8 +3,8 @@
 FULL_START=90
 FULL_STOP=95
 
-DEFAULT_START=75
-DEFAULT_STOP=80
+DEFAULT_START=80
+DEFAULT_STOP=85
 
 # set the battery charging thresholds to extend battery lifespan
 set_thresh() {
