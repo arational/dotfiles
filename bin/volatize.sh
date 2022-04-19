@@ -12,16 +12,20 @@ save () {
 }
 
 start () {
-    if [ ! -r $volatile ]; then
-        mkdir -m0700 $volatile
-    fi
-
-    if [ "$(readlink $link)" != "$volatile" ]; then
+    if [ "$(readlink $link)" = "$volatile" ]; then
+        if [ -r $volatile ]; then
+            save $link $static
+        else
+            mkdir -m0700 $volatile
+            save $static $link
+        fi
+    else
+        if [ ! -r $volatile ]; then
+            mkdir -m0700 $volatile
+        fi
         mv $link $static
         ln -s $volatile $link
-        save ./$static/ ./$link/
-    else
-        save $link $static
+        save $static $link
     fi
     echo "$(date) '$link' synchronized"
 }
