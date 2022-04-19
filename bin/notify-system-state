@@ -1,0 +1,25 @@
+#!/bin/env sh
+
+netaddr () {
+    notify-send "Network addresses" "$(ip -br a)"
+}
+
+fsusage () {
+    notify-send "Filesystem usages" "$(df -h)"
+}
+
+case $1 in
+    netaddr)
+        netaddr
+        ;;
+    fsusage)
+        fsusage
+        ;;
+    *)
+        echo "Usage: $0 [ACTION]"
+        echo
+        echo "Choose from one of the following ACTION"
+        echo "netaddr - Shows the output of 'ip -br a'"
+        echo "fsusage - Shows the output of 'df -h'"
+        exit 2
+esac

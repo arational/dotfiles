@@ -225,6 +225,17 @@ mode "$mode_qutebrowser" {
 }
 bindsym $mod+q mode "$mode_qutebrowser"
 
+# report system state info
+set $mode_notify Report (n) network addresses, (f) filesystem usage
+mode "$mode_notify" {
+    bindsym n exec --no-startup-id notify-system-state netaddr, mode "default"
+    bindsym f exec --no-startup-id notify-system-state fsusage, mode "default"
+    
+    # back to normal: Escape
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+space mode "$mode_notify"
+
 # tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
 for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
