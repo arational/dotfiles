@@ -12,3 +12,5 @@ then
     sh "$source/$selection.sh"
 fi
 $HOME/.fehbg
+killall -q -w -s KILL conky
+conky
