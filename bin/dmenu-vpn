@@ -1,0 +1,9 @@
+#!/bin/env sh
+selection="$(sudo ls /etc/openvpn/client/ | grep -G '.conf$' | dmenu)"
+unit="openvpn-client@$(basename $selection .conf)"
+if [ "active" = "$(systemctl is-active $unit)" ]
+then
+    sudo systemctl stop "$unit"
+else
+    sudo systemctl start "$unit"
+fi

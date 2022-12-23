@@ -46,6 +46,9 @@ bindsym $mod+o exec --no-startup-id dmenu-open -l 30
 # Script for screenlayout
 bindsym $mod+backslash exec --no-startup-id dmenu-screenlayout
 
+# Script for VPN switch
+bindsym $mod+slash exec --no-startup-id dmenu-vpn
+
 # Script for quick password access
 bindsym $mod+p exec --no-startup-id passmenu -l 20
 
@@ -90,6 +93,9 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+b floating toggle
 
+# sticky window toggle
+bindsym $mod+Shift+s sticky toggle
+
 # change focus between tiling / floating windows
 bindsym $mod+b focus mode_toggle
 
@@ -112,6 +118,7 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+space workspace back_and_forth
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -214,11 +221,15 @@ bindsym $mod+F10 exec monitor.sh above
 # xcape (Turns single Control presses into escape)
 bindsym $mod+F12 exec toggle_xcape
 
+# picom (Compositor for transparency and shadow effects)
+bindsym $mod+F11 exec toggle_picom
+
 # qutebrowser
-set $mode_qutebrowser Qutebrowser (Return) default, (p) private
+set $mode_qutebrowser Qutebrowser (Return) default, (p) private, (i) i2p
 mode "$mode_qutebrowser" {
     bindsym Return exec --no-startup-id qutebrowser, mode "default"
     bindsym p exec --no-startup-id qutebrowser -B ~/.qutebrowser/private, mode "default"
+    bindsym i exec --no-startup-id qutebrowser -B ~/.qutebrowser/i2p, mode "default"
 
     # back to normal: Escape
     bindsym Escape mode "default"
@@ -236,17 +247,29 @@ mode "$mode_notify" {
 }
 bindsym $mod+Shift+space mode "$mode_notify"
 
+# scratchpad
+
 # tmux
 bindsym $mod+minus [class="^tmux$" instance="^xterm$"] scratchpad show
 for_window [class="^tmux$" instance="^xterm$"] move to scratchpad
-
-# conky
-bindsym $mod+space [class="^conky$" instance="^conky$"] scratchpad show
-for_window [class="^conky$" instance="^conky$"] move to scratchpad
-
 # org notes
 bindsym $mod+n [instance="^emacs$" title="~/var/notes.org"] scratchpad show
 for_window [instance="^emacs$" title="~/var/notes.org"] move to scratchpad
+# edit selected textfield in qutebrowser with emacs
+bindsym $mod+semicolon [instance="^emacs$" title="qutebrowser-editor-.+"] scratchpad show
+for_window [instance="^emacs$" title="qutebrowser-editor-.+"] move to scratchpad, scratchpad show
+# Signal
+bindsym $mod+period [class="^Signal$" title="^Signal.*"] scratchpad show
+for_window [class="^Signal$" title="^Signal.*"] move to scratchpad, scratchpad show
+# Mattermost
+bindsym $mod+comma [class="^Mattermost$" title="^Mattermost Desktop App$"] scratchpad show
+for_window [class="^Mattermost$" title="^Mattermost Desktop App$"] move to scratchpad, scratchpad show
+
+# small video player
+for_window [class="^mpv$" title="^liquidplay$"] floating enable, sticky enable, exec "transset-df -n 'liquidplay' 0.7"
+
+# small video player
+for_window [class="^projectM-pulseaudio$" title="^projectM$"] floating enable, sticky enable, exec "transset-df --no-regex -n 'projectM' 0.7"
 
 # xzoom
 for_window [title="^xzoom x\d+$"] floating toggle
@@ -271,5 +294,5 @@ bindsym $mod+Ctrl+o exec dmenu-mpc-song
 bindsym $mod+Ctrl+f exec dmenu-mpc-folder
 
 # autostart applications
-exec emailclient
-exec emc "~/var/notes.org"
+exec conky
+

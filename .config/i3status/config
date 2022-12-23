@@ -5,6 +5,8 @@ general {
      markup = "pango"
 }
 
+order += "path_exists liquid VPN"
+order += "path_exists bevuta VPN"
 order += "cpu_temperature 0"
 order += "cpu_temperature 1"
 order += "cpu_temperature 2"
@@ -13,6 +15,14 @@ order += "cpu_usage"
 order += "battery 0"
 order += "battery 1"
 order += "tztime berlin"
+
+path_exists "liquid VPN" {
+     path = "/proc/sys/net/ipv4/conf/tun-liquid"
+}
+
+path_exists "bevuta VPN" {
+     path = "/proc/sys/net/ipv4/conf/tun-bevuta"
+}
 
 cpu_temperature 0 {
      format = "%degrees °C"
