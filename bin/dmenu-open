@@ -1,13 +1,15 @@
 #!/bin/sh
+dirs="var/downloads/
+tmp/
+media/
+mnt/
+doc"
 nodes=
 while read -r node
 do
-    if [ -h "$node" ]
-    then
-        node="$node/"
-    fi
+    echo "$node"
     nodes="$nodes"$'\n'$(find "$node" -type f ! -iname ".*")
-done <<< "$(ls -1 $HOME)"
+done <<< "$dirs"
 selection=$(echo "$nodes" | dmenu "$@")
 cd $HOME
 if [ -n "$selection" ]
