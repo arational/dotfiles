@@ -1,0 +1,2 @@
+#!/bin/env sh
+mpv --title=liquidplay --geometry=-20+20 --force-window-position --window-scale=0.5 "$@"

@@ -1,0 +1,2 @@
+#!/bin/env sh
+liquidplay --shuffle "$HOME/media/musicvideos"
