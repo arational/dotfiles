@@ -52,15 +52,17 @@ fi
 [ -f /etc/xprofile ] && source /etc/xprofile
 [ -f ~/.xprofile ] && source ~/.xprofile
 
+# Start gnome keyring daemon
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
+toggle_xcape
+
 # set battery mode to default
 set_battery_mode default
 
 # turn off screensaver
 setx s off
-
-# Show the background image
-toggle_xcape
-conky -d
 
 open-pass-tomb
 i3-sensible-terminal -class tmux -e tmux_session &
