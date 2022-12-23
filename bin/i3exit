@@ -3,13 +3,19 @@ lock() {
    i3lock -c 000000 -e -u
 }
 
+cleanup() {
+    # TODO: workaround for the fact that conky doesn't process
+    # SIGTERM signal correctly and therefore hangs on shutdown
+    # process
+    killall -q -w -s KILL conky
+}
+
 case "$1" in
    lock)
-       electricsheep
        lock
        ;;
    logout)
-       tmux kill-session -t tmux
+       cleanup
        i3-msg exit
        ;;
    suspend)
@@ -21,9 +27,11 @@ case "$1" in
        lock && systemctl hibernate
        ;;
    reboot)
+       cleanup
        systemctl reboot
        ;;
    shutdown)
+       cleanup
        systemctl poweroff
        ;;
    *)
