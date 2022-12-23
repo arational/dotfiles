@@ -44,21 +44,42 @@ settings:
         '>': tab-move +
         O: set-cmd-text -s :open -t -r
         Pp: open -t -r -- {clipboard}
+        e: edit-text
         q: set-cmd-text :spawn mpv {url}
         zl: spawn --userscript qute-pass
         zpl: spawn --userscript qute-pass --password-only
         zul: spawn --userscript qute-pass --username-only
       prompt: {}
+  colors.tabs.even.bg:
+    global: black
+  colors.tabs.even.fg:
+    global: white
+  colors.tabs.odd.bg:
+    global: black
+  colors.tabs.odd.fg:
+    global: white
+  colors.tabs.selected.even.bg:
+    global: black
+  colors.tabs.selected.even.fg:
+    global: '#0f0'
+  colors.tabs.selected.odd.bg:
+    global: black
+  colors.tabs.selected.odd.fg:
+    global: '#0f0'
   content.default_encoding:
     global: utf-8
   content.geolocation:
     global: true
   content.headers.accept_language:
     global: en-US,en,de
+  content.media.audio_capture:
+    https://meet.bevuta.com: true
   content.notifications.enabled:
     global: true
   content.pdfjs:
-    global: true
+    global: false
+  content.proxy:
+    global: system
   content.webgl:
     global: false
   downloads.location.directory:
@@ -68,34 +89,35 @@ settings:
     - emc
     - '{}'
   fonts.completion.category:
-    global: bold 10pt default_family
+    global: bold 12pt default_family
   fonts.completion.entry:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.debug_console:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.default_family:
-    global:
-    - Terminus
+    global: Menlo
+  fonts.default_size:
+    global: 12pt
   fonts.downloads:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.hints:
-    global: bold 10pt default_family
+    global: bold 12pt default_family
   fonts.keyhint:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.messages.error:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.messages.info:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.messages.warning:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.prompts:
-    global: 10pt sans-serif
+    global: 12pt sans-serif
   fonts.statusbar:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.tabs.selected:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.tabs.unselected:
-    global: 10pt default_family
+    global: 12pt default_family
   fonts.web.size.default:
     global: 16
   fonts.web.size.default_fixed:
@@ -120,3 +142,5 @@ settings:
       wd: https://de.wikipedia.org/w/index.php?title=Spezial:Suche&search={}
       we: https://en.wikipedia.org/wiki/Special:Search?go=Go&search={}
       y: https://www.youtube.com/results?search_query={}&search=Search
+  zoom.default:
+    global: 120%
