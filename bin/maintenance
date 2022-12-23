@@ -76,6 +76,10 @@ backup() {
     cp pubring.kbx $TARGETDIR/
     gpg --export-ownertrust > $TARGETDIR/ownertrust.txt
 
+    echo "Making backup of crypto wallets ..."
+    cd $HOME/.crypto-wallets/
+    tar -cjf $TARGETDIR/crypto-wallets.tar.bz2 *
+
     echo "Done!"
 }
 
