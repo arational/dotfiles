@@ -1,20 +1,21 @@
 #!/bin/env bash
 
+set -e -o pipefail
+
 ######################################################################
 # This script performs a live backup of the whole root partition.
 #
 # Please make the mandatory changes of the environment variables.
 ######################################################################
 
-set -e -o pipefail
-
 modsize=1G
 partsize=1G
-#target="$HOME/var/backup/liquid/long/$(date +%Y%m%d)"
 target="$HOME/mnt/BACKUPS/$(date +%Y%m%d)"
-root=/dev/system/root
+rootdev=/dev/system/root
 snapshot=snap01
-#source=/dev/loop1
+
+######################################################################
+
 
 confirm() {
     while true
@@ -30,26 +31,26 @@ confirm() {
 echo
 echo "Summary"
 echo "======="
-echo "Root device: $root"
+echo "Root device: $rootdev"
 echo "Target directory: $target"
 confirm
 
 echo "Creating LVM snapshot and open its luks container ..."
-sudo lvcreate --size $modsize --snapshot --name $snapshot $root
+sudo lvcreate --size $modsize --snapshot --name $snapshot $rootdev
 sudo cryptsetup luksOpen /dev/system/$snapshot $snapshot
-source=/dev/mapper/$snapshot
+sourcedev=/dev/mapper/$snapshot
 
 echo "Checking source device ..."
-sudo e2fsck -f $source
+sudo e2fsck -f $sourcedev
 
 echo "Preparing the target directory ..."
 mkdir -p "$target"
 
 echo "Saving device information ..."
 # TODO: check whether device exists
-size=$(sudo blockdev --getsize64 $source)
+size=$(sudo blockdev --getsize64 $sourcedev)
 # TODO: check available free space
-sudo fdisk -l $source > "$target/fdisk.info"
+sudo fdisk -l $sourcedev > "$target/fdisk.info"
 echo "$size" > "$target/blockdev.size64"
 
 echo "Storing backup ..."
@@ -58,7 +59,7 @@ tmpdir=$(mktemp -d)
 pipe=$tmpdir/sha256sum.pipe
 mkfifo $pipe
 sha256sum < $pipe > $tmpdir/checksum & pid=$!
-sudo e2image -ra -p $source - | \
+sudo e2image -ra -p $sourcedev - | \
     pbzip2 -1 -c | \
     scrypt enc - | \
     tee $pipe | \
