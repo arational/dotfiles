@@ -20,7 +20,7 @@
 ;;; custom keybindings
 
 ;; Map Prefix-Argument to M-u
-(define-key global-map (kbd "M-u") 'universal-argument)
+(keymap-global-set "M-u" 'universal-argument)
 (define-key universal-argument-map (kbd "M-u") 'universal-argument-more)
 
 ;; esc always quits
@@ -29,7 +29,7 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'keyboard-quit)
+(keymap-global-set "<escape>" 'keyboard-quit)
 
 ;; Wrap in square brackets
 ;;
@@ -38,33 +38,36 @@
 ;; "M-[") 'paredit-wrap-square)
 
 ;; Reduce whitespaces to one or none
-(global-set-key (kbd "M-SPC") 'cycle-spacing)
+(keymap-global-set "M-SPC" 'cycle-spacing)
 
 ;; keep cursor at same position when scrolling and add keywbindings to
 ;; scroll the screen when moving the cursor
 (setq scroll-preserve-screen-position 1)
-(global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
-(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
+(keymap-global-set "M-n" "C-u 1 C-v")
+(keymap-global-set "M-p" "C-u 1 M-v")
+
+;; Always delete trailing whitespaces before saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;; swiper
 
 (require 'swiper)
 (require 'counsel)
 
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-<tab>") 'swiper-thing-at-point)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git) ; will override the keybinding for `magit-file-dispatch'
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c a") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "M-y") 'counsel-yank-pop)
+(keymap-global-set "C-s" 'swiper)
+(keymap-global-set "C-<tab>" 'swiper-thing-at-point)
+(keymap-global-set "M-x" 'counsel-M-x)
+(keymap-global-set "C-x C-f" 'counsel-find-file)
+(keymap-global-set "<f1> f" 'counsel-describe-function)
+(keymap-global-set "<f1> v" 'counsel-describe-variable)
+(keymap-global-set "<f1> l" 'counsel-find-library)
+(keymap-global-set "<f2> i" 'counsel-info-lookup-symbol)
+(keymap-global-set "<f2> u" 'counsel-unicode-char)
+(keymap-global-set "C-c g" 'counsel-git) ; will override the keybinding for `magit-file-dispatch'
+(keymap-global-set "C-c j" 'counsel-git-grep)
+(keymap-global-set "C-c a" 'counsel-ag)
+(keymap-global-set "C-x l" 'counsel-locate)
+(keymap-global-set "M-y" 'counsel-yank-pop)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 ;;; smartparent
@@ -79,7 +82,7 @@
      (sp-wrap-with-pair ,s)))
 
 ;; Toggle smartparens strict mode for buffer
-(global-set-key (kbd "C-x M-s") 'smartparens-strict-mode)
+(keymap-global-set "C-x M-s" 'smartparens-strict-mode)
 
 (require 'smartparens-clojure)
 
@@ -92,11 +95,17 @@
 ;;(define-key prog-mode-map (kbd "M-[") (liquid-sp-wrap-with "["))
 (define-key prog-mode-map (kbd "M-\"") (liquid-sp-wrap-with "\""))
 
+;;; direnv
+
+(require 'direnv)
+
+(keymap-global-set "C-x M-d" 'direnv-mode)
+
 ;;; ace-window
 
 (require 'ace-window)
 
-(global-set-key (kbd "C-x o") 'ace-window)
+(keymap-global-set "C-x o" 'ace-window)
 
 ;;; magit
 
@@ -117,6 +126,8 @@
               (forward-char -1))))))))
 
 (add-hook 'git-commit-mode-hook 'my-git-commit-setup)
+
+(keymap-global-set "C-c m b" 'magit-blame)
 
 ;;; projectile
 
@@ -195,17 +206,22 @@
 
 (require 'easy-kill)
 
-(global-set-key [remap kill-ring-save] #'easy-kill)
-(global-set-key [remap mark-sexp] #'easy-mark)
+(keymap-global-set "<remap> <kill-ring-save>" #'easy-kill)
+(keymap-global-set "<remap> <mark-sexp>" #'easy-mark)
+
+;;; imenu
+
+(add-hook 'clojure-mode-hook 'imenu-add-menubar-index)
+(add-hook 'emacs-lisp-mode-hook 'imenu-add-menubar-index)
 
 ;;; windmove
 
 (require 'windmove)
 
-(global-set-key (kbd "C-S-h") 'windmove-left)
-(global-set-key (kbd "C-S-l") 'windmove-right)
-(global-set-key (kbd "C-S-k") 'windmove-up)
-(global-set-key (kbd "C-S-j") 'windmove-down)
+(keymap-global-set "C-S-h" 'windmove-left)
+(keymap-global-set "C-S-l" 'windmove-right)
+(keymap-global-set "C-S-k" 'windmove-up)
+(keymap-global-set "C-S-j" 'windmove-down)
 
 ;;; undo-tree
 
@@ -216,6 +232,49 @@
       `((".*" . ,temporary-file-directory)))
 (setq undo-tree-auto-save-history t)
 
+;;; org-mode
+
+(require 'org)
+
+(use-package org
+  :bind (:map org-mode-map
+              ("C-M-n" . org-clock-timestamps-up)
+              ("C-M-p" . org-clock-timestamps-down)))
+
+;;; dired
+
+(require 'gnus-dired)
+(require 'dired-rsync)
+
+(define-key dired-mode-map "Y" 'dired-rsync)
+
+(defun dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (let* ((file (dired-get-filename nil t)))
+    (message "Opening %s..." file)
+    (call-process "xdg-open" nil 0 nil file)))
+
+(define-key dired-mode-map "!" 'dired-open-file)
+
+;;; git-link
+;; What will this give you?
+;;
+;; The ability to run `git-link' somewhere in one of bevuta's repos,
+;; which will open the same file in the web browser, in the hosted
+;; GitLab web UI. Whose URL you can then copy and share.
+;;
+;; Requires a separate standalone package git-link.el, available from:
+;; https://github.com/sshaw/git-link
+;;
+;; When git-link is installed in your Emacs' path, eval the below in
+;; order to extend git-link, so that it understands how to reach
+;; bevuta's self hosted GitLab instance.
+
+(require 'git-link)
+(setq git-link-use-commit t)
+(add-to-list 'git-link-remote-alist '("dev.bevuta.com" git-link-gitlab))
+
 ;;; helper functions
 
 ;; Bash terminal
@@ -223,7 +282,7 @@
   "Run \"ansi-term\" with bash as program."
   (interactive)
   (ansi-term "bash"))
-(global-set-key (kbd "C-x M-m") 'bash-term)
+(keymap-global-set "C-x M-m" 'bash-term)
 
 (defun insert-uuid ()
   "Generate a UUID via `uuidgen` and insert it into the current buffer."

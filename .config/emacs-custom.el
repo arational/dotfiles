@@ -9,15 +9,20 @@
  '(dired-listing-switches "-alFh")
  '(direnv-always-show-summary nil)
  '(direnv-mode t)
+ '(ee-export-file "/home/ivan/src/bevuta/effort.csv")
  '(global-auto-revert-mode t)
  '(global-hl-todo-mode t)
  '(global-undo-tree-mode t)
+ '(ignored-local-variable-values '((flycheck-disabled-checkers emacs-lisp-checkdoc)))
+ '(indent-tabs-mode nil)
+ '(ivy-mode t)
  '(lsp-auto-configure nil)
  '(lsp-completion-enable-additional-text-edit nil)
  '(lsp-completion-provider :none)
  '(lsp-completion-show-kind nil)
  '(lsp-eldoc-enable-hover nil)
  '(lsp-enable-dap-auto-configure nil)
+ '(lsp-enable-file-watchers nil)
  '(lsp-enable-folding nil)
  '(lsp-enable-indentation nil)
  '(lsp-enable-on-type-formatting nil)
@@ -33,26 +38,37 @@
  '(lsp-modeline-workspace-status-enable nil)
  '(lsp-signature-doc-lines 10)
  '(magit-repository-directories '(("~/src/bevuta" . 2) ("~/src" . 1)))
+ '(make-backup-files nil)
  '(package-selected-packages
-   '(hl-todo easy-kill flycheck-clj-kondo xref-union dired-du undo-tree ace-window term-keys xclip company direnv lsp-mode cider counsel-projectile projectile smartparens swiper ivy ag magit))
+   '(effort-export prettier git-link dired-rsync hl-todo easy-kill flycheck-clj-kondo xref-union dired-du undo-tree ace-window term-keys xclip company direnv lsp-mode cider counsel-projectile projectile smartparens swiper ivy ag magit))
  '(require-final-newline t)
  '(safe-local-variable-values
    '((eval setq-local cider-clojure-cli-aliases
-	   (let
-	       ((default-directory
-		 (clojure-project-dir)))
-	     (shell-command-to-string "bb aliases:dev :module/build 2>/dev/null")))
+           (let
+               ((default-directory
+                 (clojure-project-dir)))
+             (shell-command-to-string "bb aliases:dev :module/verification-phone-caller 2>/dev/null")))
+     (eval setq-local cider-clojure-cli-aliases
+           (let
+               ((default-directory
+                 (clojure-project-dir)))
+             (shell-command-to-string "bb aliases:dev :module/server.admin 2>/dev/null")))
+     (eval setq-local cider-clojure-cli-aliases
+           (let
+               ((default-directory
+                 (clojure-project-dir)))
+             (shell-command-to-string "bb aliases:dev :module/build 2>/dev/null")))
      (eval define-clojure-indent
-	   (defobject
-	    '(2 :form :form
-		(1))))
+           (defobject
+            '(2 :form :form
+                (1))))
      (grep-find-ignored-directories ".shadow-cljs" ".cpcache" ".clj-kondo")
      (grep-find-ignored-directories ".shadow-cljs")
      (eval setq-local cider-clojure-cli-aliases
-	   (let
-	       ((default-directory
-		 (clojure-project-dir)))
-	     (shell-command-to-string "bb aliases:dev :module/server.main 2>/dev/null")))
+           (let
+               ((default-directory
+                 (clojure-project-dir)))
+             (shell-command-to-string "bb aliases:dev :module/server.main 2>/dev/null")))
      (cljr-insert-newline-after-require)
      (cljr-favor-prefix-notation)
      (cider-clojure-cli-aliases "NOTE: you need to run cider-jack-in from a file of one of the subprojects. See README.md for details.")
