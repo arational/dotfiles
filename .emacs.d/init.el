@@ -22,6 +22,7 @@
 ;; Map Prefix-Argument to M-u
 (keymap-global-set "M-u" 'universal-argument)
 (define-key universal-argument-map (kbd "M-u") 'universal-argument-more)
+(keymap-global-set "C--" 'undo)
 (keymap-global-set "C-c c" 'git-link)
 
 ;; esc always quits
