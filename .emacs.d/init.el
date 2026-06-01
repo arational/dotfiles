@@ -9,14 +9,6 @@
 (setq custom-file "~/.config/emacs-custom.el")
 (load custom-file)
 
-;;; package archives
-
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; NOTE: required by term-keys
-(add-to-list 'package-archives
-             '("cselpa" . "https://elpa.thecybershadow.net/packages/"))
-
 ;;; custom keybindings
 
 ;; Map Prefix-Argument to M-u
