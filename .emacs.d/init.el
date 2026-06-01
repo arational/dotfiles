@@ -22,6 +22,7 @@
 ;; Map Prefix-Argument to M-u
 (keymap-global-set "M-u" 'universal-argument)
 (define-key universal-argument-map (kbd "M-u") 'universal-argument-more)
+(keymap-global-set "C-c c" 'git-link)
 
 ;; esc always quits
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -256,24 +257,6 @@
     (call-process "xdg-open" nil 0 nil file)))
 
 (define-key dired-mode-map "!" 'dired-open-file)
-
-;;; git-link
-;; What will this give you?
-;;
-;; The ability to run `git-link' somewhere in one of bevuta's repos,
-;; which will open the same file in the web browser, in the hosted
-;; GitLab web UI. Whose URL you can then copy and share.
-;;
-;; Requires a separate standalone package git-link.el, available from:
-;; https://github.com/sshaw/git-link
-;;
-;; When git-link is installed in your Emacs' path, eval the below in
-;; order to extend git-link, so that it understands how to reach
-;; bevuta's self hosted GitLab instance.
-
-(require 'git-link)
-(setq git-link-use-commit t)
-(add-to-list 'git-link-remote-alist '("dev.bevuta.com" git-link-gitlab))
 
 ;;; helper functions
 
