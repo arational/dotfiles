@@ -130,6 +130,7 @@
 (add-hook 'git-commit-mode-hook 'my-git-commit-setup)
 
 (keymap-global-set "C-c m b" 'magit-blame)
+(keymap-global-set "C-c m c" 'magit-show-commit)
 
 ;;; projectile
 
